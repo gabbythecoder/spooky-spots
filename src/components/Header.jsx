@@ -6,6 +6,7 @@ import {
   SignedOut,
   SignInButton,
   SignUpButton,
+  SignOutButton,
 } from "@clerk/nextjs";
 
 export default async function Header() {
@@ -15,21 +16,24 @@ export default async function Header() {
         <div>
           <h1>Spooky Spots</h1>
         </div>
-        <div>
+        <div className="flex justify-between">
           <nav>
             <Link href={"/"}>Home</Link>
           </nav>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-          <SignedOut>
-            <SignInButton>
-              <button>Login</button>
-            </SignInButton>
-            <SignUpButton>
-              <button>Sign-up</button>
-            </SignUpButton>
-          </SignedOut>
+          <div className="flex gap-5">
+            <SignedIn>
+              <UserButton />
+              <SignOutButton />
+            </SignedIn>
+            <SignedOut>
+              <SignInButton>
+                <button>Login</button>
+              </SignInButton>
+              <SignUpButton>
+                <button>Sign-up</button>
+              </SignUpButton>
+            </SignedOut>
+          </div>
         </div>
       </header>
     </>

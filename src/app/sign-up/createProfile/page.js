@@ -50,9 +50,9 @@ export default async function createProfilePage() {
             <label htmlFor="optionalemail">Optional email: </label>
             <input type="text" name="optionalemail" />
             <label htmlFor="usernumber">Number: </label>
-            <input type="text" name="usernumber" required />
+            <input type="text" name="usernumber" />
             <label htmlFor="additionalinfo">Additional information: </label>
-            <textarea type="text" name="additionalinfo" required />
+            <textarea type="text" name="additionalinfo" />
           </fieldset>
           <button type="submit">Create</button>
         </form>
