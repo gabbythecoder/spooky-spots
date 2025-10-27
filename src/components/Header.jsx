@@ -13,7 +13,7 @@ export default async function Header() {
     <>
       <header>
         <div>
-          <h1>Hivemind</h1>
+          <h1>Spooky Spots</h1>
         </div>
         <div>
           <nav>
