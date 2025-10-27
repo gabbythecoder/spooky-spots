@@ -13,9 +13,8 @@ import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 import Link from "next/link";
 
 export default function MyMap(props) {
-  const { position, zoom } = props;
-
-  console.log(props);
+  const { width, height, placeData } = props;
+  console.log(placeData);
 
   function PlaceMarker() {
     const [position, setPosition] = useState(null);
@@ -38,6 +37,17 @@ export default function MyMap(props) {
     );
   }
 
+  function MapPlaces() {
+    return placeData.map((place, index) => {
+      const coords = { lat: place.x, lng: place.y };
+      return (
+        <Marker key={index} position={coords}>
+          <Popup>{place.name}</Popup>
+        </Marker>
+      );
+    });
+  }
+
   return (
     <div className={`w-[${props.width}]% h-[${props.height}]vh`}>
       <MapContainer
@@ -47,6 +57,7 @@ export default function MyMap(props) {
         scrollWheelZoom={true}
       >
         <PlaceMarker />
+        <MapPlaces />
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

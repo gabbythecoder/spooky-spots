@@ -33,7 +33,7 @@ export default function HomePage() {
     <div>
       <h1>Welcome to Spooky Spots!</h1>
 
-      <Map width={50} height={35} />
+      <Map placeData={places} width={50} height={35} />
 
       <h2>Browse our lists of Spooky Spots</h2>
       {places.map((place) => {
