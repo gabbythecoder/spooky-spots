@@ -15,7 +15,7 @@ export default function MyPage() {
 
   return (
     <div>
-      <Map />
+      <Map width={100} height={100} />
     </div>
   );
 }
