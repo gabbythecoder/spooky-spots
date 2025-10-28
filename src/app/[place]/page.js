@@ -48,11 +48,7 @@ JOIN places ON comments.place_id = places.endpoint WHERE comments.place_id = $1`
         <h2>History:</h2>
         {placeData.history ? <p>{placeData.history}</p> : <p>No History Set</p>}
       </section>
-      {user ? (
-        <BookingForm slots={placeData.booking_slots} />
-      ) : (
-        <p>Login to book</p>
-      )}
+      {user ? <BookingForm /> : <p>Login to book</p>}
 
       <section>
         <h2>Comments:</h2>

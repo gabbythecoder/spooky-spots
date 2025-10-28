@@ -34,21 +34,24 @@ export default function BookingForm({ slots }) {
           <div>
             <button
               onClick={() => {
-                if (groupSize > 0) {
-                  setGroupSize(groupSize - 1);
-                }
+                setGroupSize(groupSize - 1);
               }}
             >
               -
             </button>
 
-            <input type="text" name="groupsize" value={groupSize} />
+            <input
+              type="text"
+              name="groupsize"
+              onChange={(e) => {
+                setGroupSize(e.target.value);
+              }}
+              value={groupSize}
+            />
 
             <button
               onClick={() => {
-                if (groupSize < slots) {
-                  setGroupSize(groupSize + 1);
-                }
+                setGroupSize(groupSize + 1);
               }}
             >
               +
