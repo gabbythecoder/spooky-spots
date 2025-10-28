@@ -66,45 +66,92 @@ export default async function UserProfilePage() {
 
   return (
     <>
-      <div>
-        <h2>{displayName}&apos;s Profile</h2>
-      </div>
-
-      <br />
-
-      <div>
-        <h3>Contact Information</h3>
-        {contactInfo ? (
+      <div className="flex flex-col items-center p-4">
+        <div className="w-full max-w-2xl">
           <div>
-            <p>User Number: {contactInfo.usernumber}</p>
-            <p>Optional Email: {contactInfo.optionalemail}</p>
-            <p>Additional Info: {contactInfo.additionalinfo}</p>
+            <h2 className="text-3xl font-bold mb-6 text-center text-white">
+              {displayName}&apos;s Profile
+            </h2>
           </div>
-        ) : (
-          <p>No contact information available in the database.</p>
-        )}
-      </div>
 
-      <br />
-
-      <div>
-        <h3>Bookings</h3>
-        {bookingInfo.length > 0 ? (
-          <ul>
-            {bookingInfo.map((booking) => (
-              <li key={booking.id}>
+          <div className="mb-8 p-4 border border-gray-700 rounded-lg bg-gray-800 shadow-xl">
+            <h3 className="text-xl font-semibold mb-2 text-white-400">
+              Contact Information
+            </h3>
+            {contactInfo ? (
+              <div className="space-y-1 text-white-300">
                 <p>
-                  Place: {booking.placeName}, {booking.city}
+                  <span className="font-medium text-white">Phone Number:</span>{" "}
+                  {contactInfo.usernumber}
                 </p>
-                <p>Date & Time: {booking.date}</p>
-                <p>Status: {booking.completed ? "Completed" : "Upcoming"}</p>
-                <p>Group Size: {booking.groupSize}</p>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>You have no bookings at this time.</p>
-        )}
+                <p>
+                  <span className="font-medium text-white">
+                    Optional Email:
+                  </span>{" "}
+                  {contactInfo.optionalemail}
+                </p>
+                <p>
+                  <span className="font-medium text-white">
+                    Additional Info:
+                  </span>{" "}
+                  {contactInfo.additionalinfo}
+                </p>
+              </div>
+            ) : (
+              <p>No contact information available in the database.</p>
+            )}
+          </div>
+
+          <h3 className="text-xl font-semibold mb-3 text-white-400">
+            Bookings
+          </h3>
+          <div>
+            {bookingInfo.length > 0 ? (
+              <ul className="space-y-4">
+                {bookingInfo.map((booking, index) => (
+                  <li
+                    key={index}
+                    className="p-4 border border-gray-700 rounded-lg bg-gray-800 shadow-lg text-white-300"
+                  >
+                    <p className="font-bold text-lg mb-1 text-white border-b border-gray-700 pb-2">
+                      {booking.placeName}
+                    </p>
+                    <div className="space-y-1 text-sm pt-2">
+                      <p>
+                        <span className="font-medium text-white">Place:</span>{" "}
+                        {booking.placeName}, {booking.city}
+                      </p>
+                      <p>
+                        <span className="font-medium text-white">Date:</span>{" "}
+                        {booking.date}
+                      </p>
+                      <p>
+                        <span className="font-medium text-white">Status:</span>{" "}
+                        <span
+                          className={
+                            booking.completed
+                              ? "text-green-400"
+                              : "text-yellow-400"
+                          }
+                        >
+                          {booking.completed ? "Completed" : "Upcoming"}
+                        </span>
+                      </p>
+                      <p>
+                        <span className="font-medium text-white">
+                          Group Size:
+                        </span>{" "}
+                        {booking.groupSize}
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>You have no bookings at this time.</p>
+            )}
+          </div>
+        </div>
       </div>
     </>
   );
