@@ -1,68 +1,88 @@
-"use client";
-import { useState } from "react";
+import { db } from "@/utils/dbConnection";
 
-export default function BookingForm({ slots }) {
-  const [groupSize, setGroupSize] = useState(0);
-  const [date, setDate] = useState(null);
+export default async function BookingForm({ data, user }) {
+  async function handleBooking(formData) {
+    "use server";
 
-  function handleBooking(formData) {
     const formDate = formData.get("date");
-    //console.log(Date.parse(formDate));
+    const parsedDate = Date.parse(formDate);
+
     const formValues = {
-      date: formData.get("date"),
-      groupsize: formData.get("groupsize"),
+      place_id: data.endpoint,
+      user_id: user,
+      date: parsedDate,
+      group_size: 3,
     };
-    console.log(formValues);
+
+    async function CheckAvailability(parsedDate, endpoint) {
+      if (parsedDate > 0) {
+        const response = await db.query(
+          `SELECT * FROM bookings WHERE place_id = $1 AND date = $2 AND completed = FALSE`,
+          [endpoint, parsedDate]
+        );
+        if (response.rowCount < data.booking_slots) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+    const availability = await CheckAvailability(
+      formValues.date,
+      formValues.place_id
+    );
+    if (availability) {
+      console.log(formValues);
+      db.query(
+        `INSERT INTO bookings (place_id, user_id, date, group_size) VALUES ($1, $2, $3, $4)`,
+        [
+          formValues.place_id,
+          formValues.user_id,
+          formValues.date,
+          formValues.group_size,
+        ]
+      );
+    } else {
+      console.log("No availability for this date");
+    }
   }
 
   return (
     <>
       <section>
         <h1>Booking Form</h1>
-        <form action={handleBooking} className="flex">
-          <div>
-            <label htmlFor="date">Pick a date:</label>
-            <input
-              type="date"
-              name="date"
-              defaultValue={date}
-              onChange={(e) => {
-                setDate(e.target.value);
-              }}
-            />
-          </div>
-          <div>
-            <button
-              onClick={() => {
-                setGroupSize(groupSize - 1);
-              }}
-            >
-              -
-            </button>
-
-            <input
-              type="text"
-              name="groupsize"
-              onChange={(e) => {
-                setGroupSize(e.target.value);
-              }}
-              value={groupSize}
-            />
+        <form
+          action={handleBooking}
+          className="flex gap-10 justify-evenly border border-white"
+        >
+          <div className="flex flex-col gap-3">
+            <div className="flex flex-col">
+              <label htmlFor="date">Choose a date:</label>
+              <input type="date" name="date" />
+            </div>
 
             <button
-              onClick={() => {
-                setGroupSize(groupSize + 1);
-              }}
+              type="submit"
+              className="bg-zinc-500 p-1 border border-1-zinc-200"
             >
-              +
+              Place Booking
             </button>
           </div>
-          <button
-            type="submit"
-            className="bg-zinc-500 p-1 border border-1-zinc-200"
-          >
-            Confirm Booking
-          </button>
+
+          {/* <div className="flex flex-col text-center">
+            <div className="flex flex-col">
+              <label htmlFor="name">Name</label>
+              <input type="text" name="name" className="border border-white" />
+            </div>
+            <div className="flex flex-col text-center">
+              <label htmlFor="contact">Contact</label>
+              <input
+                type="text"
+                name="contact"
+                className="border border-white"
+              />
+            </div>
+          </div> */}
         </form>
       </section>
     </>

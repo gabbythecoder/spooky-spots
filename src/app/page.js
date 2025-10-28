@@ -45,14 +45,14 @@ export default function HomePage() {
       <Map placeData={places} width={50} height={35} />
 
       <h2>Browse our lists of Spooky Spots</h2>
-      {places.map((place) => {
+      {places.map((place, i) => {
         return (
-          <div key={place.endpoint} className="flex gap-5 mb-4">
+          <div key={i} className="flex gap-5 mb-4">
             {place.image_url ? (
               <Link href={`/${place.endpoint}`}>
                 <Image
                   src={place.image_url}
-                  alt={place.slug}
+                  alt={place.services}
                   width={130}
                   height={170}
                 />

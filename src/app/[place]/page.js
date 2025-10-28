@@ -7,6 +7,7 @@ import BookingForm from "@/components/BookingForm";
 export default async function PlacePage({ params }) {
   const user = await currentUser();
   console.log(user);
+
   const myParams = await params;
 
   const placeResponse = await db.query(
@@ -27,16 +28,20 @@ JOIN places ON comments.place_id = places.endpoint WHERE comments.place_id = $1`
   const commentsData = await commentsResponse.rows;
 
   return (
-    <>
-      {placeData ? <h1>{placeData.name}</h1> : <h1>No Place Found</h1>}
+    <main className="flex flex-col gap-5">
+      {placeData ? (
+        <h1 className="text-3xl text-center">{placeData.name}</h1>
+      ) : (
+        <h1>No Place Found</h1>
+      )}
 
-      <section className="flex gap-5">
+      <section className="flex gap-5 bg-blue-950">
         <div>
           {placeData ? (
             <Image
               width={100}
               height={100}
-              alt={"test"}
+              alt={placeData.services}
               src={placeData.image_url}
             />
           ) : null}
@@ -44,13 +49,20 @@ JOIN places ON comments.place_id = places.endpoint WHERE comments.place_id = $1`
         <div>Slug Section</div>
       </section>
 
-      <section>
+      <section className="bg-blue-950">
         <h2>History:</h2>
         {placeData.history ? <p>{placeData.history}</p> : <p>No History Set</p>}
       </section>
-      {user ? <BookingForm /> : <p>Login to book</p>}
 
-      <section>
+      <section className="bg-blue-950">
+        {user ? (
+          <BookingForm user={user.id} data={placeData} />
+        ) : (
+          <p>Login to book</p>
+        )}
+      </section>
+
+      <section className="bg-blue-950">
         <h2>Comments:</h2>
         {user ? (
           <form>
@@ -60,6 +72,7 @@ JOIN places ON comments.place_id = places.endpoint WHERE comments.place_id = $1`
         ) : (
           <p>Login to leave a comment</p>
         )}
+
         {commentsData.length > 0 ? (
           commentsData.map((comment) => {
             return <p key={comment.id}>{comment.comment}</p>;
@@ -68,6 +81,6 @@ JOIN places ON comments.place_id = places.endpoint WHERE comments.place_id = $1`
           <p>No Comments</p>
         )}
       </section>
-    </>
+    </main>
   );
 }
