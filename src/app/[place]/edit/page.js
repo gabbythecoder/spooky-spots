@@ -23,7 +23,7 @@ export default async function EditPlace({ params }) {
   const place = placeData.rows[0];
   // console.log(place);
 
-  //function to edit places information 
+  //function to edit places information
   async function handlePlaceUpdate(formData) {
     "use server";
 
@@ -34,10 +34,11 @@ export default async function EditPlace({ params }) {
       services: formData.get("services"),
       description: formData.get("description"),
       history: formData.get("history"),
+      booking_slots: formData.get("booking_slots"),
     };
 
     await db.query(
-      `UPDATE places SET name = $1, address = $2, city = $3, services = $4, description = $5, history = $6 WHERE endpoint = $7`,
+      `UPDATE places SET name = $1, address = $2, city = $3, services = $4, description = $5, history = $6, booking_slots = $7 WHERE endpoint = $8`,
       [
         formValues.name,
         formValues.address,
@@ -45,15 +46,16 @@ export default async function EditPlace({ params }) {
         formValues.services,
         formValues.description,
         formValues.history,
+        formValues.booking_slots,
         placeParam,
       ]
     );
     revalidatePath(`/${placeParam}`);
 
-    redirect(`${placeParam}`);
+    redirect(`/${placeParam}`);
   }
 
-  //function to add new image URL 
+  //function to add new image URL
   async function addImageUrl(formData) {
     "use server";
 
@@ -65,12 +67,17 @@ export default async function EditPlace({ params }) {
       `INSERT INTO images (place_name, image_url) VALUES ($1, $2)`,
       [placeParam, formValues.image_url]
     );
+
+    //need to double check this first if this is the best way for revalidatePath and redirect
+    // revalidatePath(`/${placeParam}`);
+
+    // redirect(`/${placeParam}`);
   }
 
   return (
     <section>
       <div>
-        <h2>Edit Page</h2>
+        <h2 className="text-3xl text-center">Edit Page</h2>
 
         <div>
           <form action={handlePlaceUpdate} className="flex flex-col gap-2">
@@ -80,6 +87,7 @@ export default async function EditPlace({ params }) {
               name="name"
               id="name"
               defaultValue={place.name}
+              className="border-2 border-white p-[0.6rem] rounded-xl"
             />
 
             <label htmlFor="address">Address:</label>
@@ -88,6 +96,7 @@ export default async function EditPlace({ params }) {
               name="address"
               id="address"
               defaultValue={place.address}
+              className="border-2 border-white p-[0.6rem] rounded-xl"
             />
 
             <label htmlFor="city">City:</label>
@@ -96,6 +105,7 @@ export default async function EditPlace({ params }) {
               name="city"
               id="city"
               defaultValue={place.city}
+              className="border-2 border-white p-[0.6rem] rounded-xl"
             />
 
             <label htmlFor="services">Services:</label>
@@ -104,6 +114,7 @@ export default async function EditPlace({ params }) {
               name="services"
               id="services"
               defaultValue={place.services}
+              className="border-2 border-white p-[0.6rem] rounded-xl"
             />
 
             <label htmlFor="description">Description:</label>
@@ -114,6 +125,7 @@ export default async function EditPlace({ params }) {
               rows="3"
               cols="8"
               defaultValue={place.description}
+              className="border-2 border-white p-[0.6rem] rounded-xl"
             />
 
             <label htmlFor="history">History:</label>
@@ -124,20 +136,36 @@ export default async function EditPlace({ params }) {
               rows="4"
               cols="10"
               defaultValue={place.history}
+              className="border-2 border-white p-[0.6rem] rounded-xl"
             />
 
-            <button type="submit">Confirm Changes</button>
+            <label htmlFor="booking_slots">Booking Slots:</label>
+            <input
+              type="number"
+              name="booking_slots"
+              id="booking_slots"
+              defaultValue={place.booking_slots}
+              className="border-2 border-white p-[0.6rem] rounded-xl"
+            />
+
+            <button
+              type="submit"
+              className="cursor-pointer rounded-[50px] border-2 border-white py-[0.8rem] px-4 w-[200px] m-auto"
+            >
+              Confirm Changes
+            </button>
           </form>
         </div>
 
-        <div>
-          <form action={addImageUrl}>
+        <div className="mt-8 mb-8">
+          <form action={addImageUrl} className="flex flex-col">
             <label htmlFor="image_url">Add New Image:</label>
             <input
               type="text"
               name="image_url"
               id="image_url"
               placeholder="Add your image URL here"
+              className="border-2 border-white p-[0.6rem] rounded-xl"
             />
             <button type="submit">Add Image</button>
           </form>
