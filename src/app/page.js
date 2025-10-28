@@ -3,6 +3,7 @@
 import { useMemo, useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HomePage() {
   const [places, setPlaces] = useState([]);
@@ -31,24 +32,42 @@ export default function HomePage() {
 
   return (
     <div>
-      <h1>Welcome to Spooky Spots!</h1>
+      <section>
+        <h1>Welcome to Spooky Spots</h1>
+        <p>
+          Uncover haunted sites, eerie tours and real stories of the paranormal.
+          Spooky Spots is your guide to the world&apos;s most chilling
+          destinations.
+        </p>
+      </section>
 
+      <h2>Discover haunted places near you!</h2>
       <Map placeData={places} width={50} height={35} />
 
       <h2>Browse our lists of Spooky Spots</h2>
       {places.map((place) => {
         return (
-          <div key={place.endpoint}>
-            <Image
-              src={place.image_url}
-              alt={place.slug}
-              width={100}
-              height={150}
-            />
+          <div key={place.endpoint} className="flex gap-5 mb-4">
+            {place.image_url ? (
+              <Link href={`/${place.endpoint}`}>
+                <Image
+                  src={place.image_url}
+                  alt={place.slug}
+                  width={130}
+                  height={170}
+                />
+              </Link>
+            ) : (
+              <div className="flex items-center justify-center border border-white-300 w-[130px] h-[170px] text-s p-1">
+                <p>Image will be available soon</p>
+              </div>
+            )}
 
-            <h2>{place.name}</h2>
-            <p>{place.city}</p>
-            <p>{place.slug}</p>
+            <div>
+              <h2>{place.name}</h2>
+              <p>{place.city}</p>
+              <p>{place.slug}</p>
+            </div>
           </div>
         );
       })}
