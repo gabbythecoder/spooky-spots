@@ -3,10 +3,11 @@ import Image from "next/image";
 import { currentUser } from "@clerk/nextjs/server";
 import { notFound } from "next/navigation";
 import BookingForm from "@/components/BookingForm";
+import BookingFormNew from "@/components/BookingFormNew";
 
 export default async function PlacePage({ params }) {
   const user = await currentUser();
-  console.log(user);
+  //console.log(user);
 
   const myParams = await params;
 
@@ -15,7 +16,7 @@ export default async function PlacePage({ params }) {
     [myParams.place]
   );
   const placeData = await placeResponse.rows[0];
-  console.log(placeData);
+  //console.log(placeData);
   if (!placeData) {
     notFound();
   }
@@ -56,7 +57,7 @@ JOIN places ON comments.place_id = places.endpoint WHERE comments.place_id = $1`
 
       <section className="bg-blue-950">
         {user ? (
-          <BookingForm user={user.id} data={placeData} />
+          <BookingFormNew user={user.id} data={placeData} />
         ) : (
           <p>Login to book</p>
         )}
