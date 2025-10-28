@@ -7,8 +7,7 @@ const nextConfig = {
         hostname: "upload.wikimedia.org",
       },
       {
-        protocol: "https",
-        hostname: "cdn.pixabay.com",
+        hostname: "**",
       },
     ],
   },
