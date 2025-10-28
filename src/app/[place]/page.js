@@ -2,6 +2,7 @@ import { db } from "@/utils/dbConnection";
 import Image from "next/image";
 import { currentUser } from "@clerk/nextjs/server";
 import { notFound } from "next/navigation";
+import BookingForm from "@/components/BookingForm";
 
 export default async function PlacePage({ params }) {
   const user = await currentUser();
@@ -25,11 +26,6 @@ JOIN places ON comments.place_id = places.endpoint WHERE comments.place_id = $1`
   );
   const commentsData = await commentsResponse.rows;
 
-  async function handleBooking(formData) {
-    "use server";
-    console.log(formData);
-  }
-
   return (
     <>
       {placeData ? <h1>{placeData.name}</h1> : <h1>No Place Found</h1>}
@@ -52,20 +48,11 @@ JOIN places ON comments.place_id = places.endpoint WHERE comments.place_id = $1`
         <h2>History:</h2>
         {placeData.history ? <p>{placeData.history}</p> : <p>No History Set</p>}
       </section>
-
-      <section>
-        <h1>
-          Booking Form Section
-          <form action={handleBooking}>
-            <button
-              type="submit"
-              className="bg-zinc-500 p-1 border border-1-zinc-200"
-            >
-              Confirm Booking
-            </button>
-          </form>
-        </h1>
-      </section>
+      {user ? (
+        <BookingForm slots={placeData.booking_slots} />
+      ) : (
+        <p>Login to book</p>
+      )}
 
       <section>
         <h2>Comments:</h2>
