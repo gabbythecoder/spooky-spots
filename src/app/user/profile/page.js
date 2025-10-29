@@ -75,7 +75,7 @@ export default async function UserProfilePage() {
           <div>
             <h2
               className="text-5xl font-bold mb-6 text-center mt-8 
-                   text-(--font-colour)]"
+                   text-(--font-colour)"
             >
               {displayName}&apos;s Profile
             </h2>
@@ -84,33 +84,33 @@ export default async function UserProfilePage() {
           <div className="mb-8 p-4 rounded-lg shadow-xl place-card">
             <h3
               className="text-xl font-semibold mb-2 
-                   text-(--secondary-accent-colour)]"
+                   text-(--secondary-accent-colour)"
             >
               Contact Information
             </h3>
             {contactInfo ? (
-              <div className="space-y-1 text-(--font-colour)]">
+              <div className="space-y-1 text-(--font-colour)">
                 <p>
-                  <span className="font-medium text-(--font-colour)]">
+                  <span className="font-medium text-(--font-colour)">
                     Phone Number:
                   </span>{" "}
                   {contactInfo.usernumber}
                 </p>
                 <p>
-                  <span className="font-medium text-(--font-colour)]">
+                  <span className="font-medium text-(--font-colour)">
                     Optional Email:
                   </span>{" "}
                   {contactInfo.optionalemail}
                 </p>
                 <p>
-                  <span className="font-medium text-(--font-colour)]">
+                  <span className="font-medium text-(--font-colour)">
                     Additional Info:
                   </span>{" "}
                   {contactInfo.additionalinfo}
                 </p>
               </div>
             ) : (
-              <p className="text-(--font-colour)]">
+              <p className="text-(--font-colour)">
                 No contact information available in the database.
               </p>
             )}
@@ -118,7 +118,7 @@ export default async function UserProfilePage() {
 
           <h3
             className="text-xl font-semibold mb-3 
-                 text-(--secondary-accent-colour)]"
+                 text-(--secondary-accent-colour)"
           >
             Bookings
           </h3>
@@ -133,27 +133,27 @@ export default async function UserProfilePage() {
                   >
                     <p
                       className="font-bold text-lg mb-1 
-                           text-(--font-colour)] 
-                           border-(--secondary-accent-colour)] 
+                           text-(--font-colour) 
+                           border-(--secondary-accent-colour)
                            pb-2"
                     >
                       {booking.placeName}
                     </p>
-                    <div className="space-y-1 text-sm text-(--font-colour)] pt-2">
+                    <div className="space-y-1 text-sm text-(--font-colour) pt-2">
                       <p>
-                        <span className="font-medium text-(--font-colour)]">
+                        <span className="font-medium text-(--font-colour)">
                           Place:
                         </span>{" "}
                         {booking.placeName}, {booking.city}
                       </p>
                       <p>
-                        <span className="font-medium text-(--font-colour)]">
+                        <span className="font-medium text-(--font-colour)">
                           Date:
                         </span>{" "}
                         {booking.date}
                       </p>
                       <p>
-                        <span className="font-medium text-(--font-colour)]">
+                        <span className="font-medium text-(--font-colour)">
                           Status:
                         </span>{" "}
                         <span
@@ -167,7 +167,7 @@ export default async function UserProfilePage() {
                         </span>
                       </p>
                       <p>
-                        <span className="font-medium text-(--font-colour)]">
+                        <span className="font-medium text-(--font-colour)">
                           Group Size:
                         </span>{" "}
                         {booking.groupSize}
@@ -177,7 +177,7 @@ export default async function UserProfilePage() {
                 ))}
               </ul>
             ) : (
-              <p className="text-(--font-colour)]">
+              <p className="text-(--font-colour)">
                 You have no bookings at this time.
               </p>
             )}
