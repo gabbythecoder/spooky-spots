@@ -5,10 +5,10 @@ import { notFound } from "next/navigation";
 import BookingForm from "@/components/BookingForm";
 import BookingFormNew from "@/components/BookingFormNew";
 import Link from "next/link";
+import { revalidatePath } from "next/cache";
 
 export default async function PlacePage({ params }) {
   const user = await currentUser();
-  console.log(user.username);
 
   const myParams = await params;
 
@@ -23,14 +23,18 @@ export default async function PlacePage({ params }) {
   }
 
   const commentsResponse = await db.query(
-    `SELECT * FROM comments
-JOIN places ON comments.place_id = places.endpoint WHERE comments.place_id = $1`,
+    `SELECT id, place_id, rating, users.username, comments.comment FROM comments
+JOIN places ON comments.place_id = places.endpoint
+JOIN users ON comments.users_id = users.clerk_id WHERE comments.place_id = $1`,
     [myParams.place]
   );
   const commentsData = await commentsResponse.rows;
 
   async function handlePostComment(formData) {
     "use server";
+    if (!user) {
+      return;
+    }
     console.log(formData);
     const formValues = {
       place_id: myParams.place,
@@ -48,6 +52,8 @@ JOIN places ON comments.place_id = places.endpoint WHERE comments.place_id = $1`
         formValues.rating,
       ]
     );
+
+    revalidatePath(`/${myParams.place}`);
   }
 
   return (
@@ -55,7 +61,7 @@ JOIN places ON comments.place_id = places.endpoint WHERE comments.place_id = $1`
       {placeData ? (
         <div className="flex flex-col">
           <h1 className="text-3xl text-center">{placeData.name}</h1>
-          {placeData.owner_username === user.username ? (
+          {placeData.owner_username === user?.username ? (
             <div className="text-center">
               <Link
                 href={`/${myParams.place}/manage`}
@@ -104,7 +110,7 @@ JOIN places ON comments.place_id = places.endpoint WHERE comments.place_id = $1`
       </section>
 
       <section className="bg-blue-950">
-        <h2>Comments:</h2>
+        <h2>Leave a comment:</h2>
         {user ? (
           <form action={handlePostComment}>
             <textarea name="comment" id="" placeholder="Leave a comment..." />
@@ -122,10 +128,19 @@ JOIN places ON comments.place_id = places.endpoint WHERE comments.place_id = $1`
         ) : (
           <p>Login to leave a comment</p>
         )}
+      </section>
 
+      <section className="flex flex-col gap-5">
+        <h2>User Comments:</h2>
         {commentsData.length > 0 ? (
           commentsData.map((comment) => {
-            return <p key={comment.id}>{comment.comment}</p>;
+            return (
+              <div key={comment.id} className="bg-blue-950">
+                <p>comment by: {comment.username}</p>
+                <p>comment: {comment.comment}</p>
+                <p>rating: {comment.rating}</p>
+              </div>
+            );
           })
         ) : (
           <p>No Comments</p>
