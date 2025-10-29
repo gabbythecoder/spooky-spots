@@ -1,8 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
 export default function BookingFormNew({ data, user }) {
-  const [chosenDate, setChosenDate] = useState(1761609600000);
-  const [bookings, setBookings] = useState({});
+
+  const [chosenDate, setChosenDate] = useState(0);
+  const [bookings, setBookings] = useState([]);
+
 
   function SetDate(formData) {
     console.log("submitted");
