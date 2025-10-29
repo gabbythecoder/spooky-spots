@@ -27,14 +27,11 @@ export default function BookingFormNew({ data, user }) {
   }, [chosenDate]);
 
   return (
-    <>
-      {bookings.rowCount < data.booking_slots ? (
-        <p>Slots Available</p>
-      ) : (
-        <p>Fully Booked</p>
-      )}
-      <form action={SetDate}>
+    <div className="flex justify-evenly">
+      <form action={SetDate} className="flex flex-col border border-white">
+        <label htmlFor="date">Select Date:</label>
         <input
+          className="m-2 border border-white"
           type="date"
           name="date"
           defaultValue={chosenDate}
@@ -45,6 +42,15 @@ export default function BookingFormNew({ data, user }) {
         />
         <button type="submit">Submit</button>
       </form>
-    </>
+      {bookings.rowCount < data.booking_slots && chosenDate > 0 ? (
+        <form className="flex flex-col border border-white">
+          <label htmlFor="">Group Size:</label>
+          <input type="number" className="border border-white m-2" />
+          <button type="submit">Confirm Booking</button>
+        </form>
+      ) : (
+        <p>No Availability For Selected Date</p>
+      )}
+    </div>
   );
 }

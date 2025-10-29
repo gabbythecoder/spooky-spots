@@ -113,7 +113,13 @@ JOIN users ON comments.users_id = users.clerk_id WHERE comments.place_id = $1`,
           <form action={handlePostComment}>
             <textarea name="comment" id="" placeholder="Leave a comment..." />
             <label htmlFor="rating">Rating: </label>
-            <input type="text" name="userid" value={user.id || null} />
+            <input
+              type="text"
+              name="userid"
+              value={user.id || null}
+              readOnly
+              hidden
+            />
             <input
               type="number"
               name="rating"
