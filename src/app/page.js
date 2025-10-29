@@ -44,9 +44,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <Map placeData={places} width={50} height={35} />
+      <Map placeData={places} width={80} height={60} />
 
-      <h2>Browse our lists of Spooky Spots</h2>
+      <h2 className="text-center">Browse our lists of Spooky Spots</h2>
       {places.length > 0 &&
         places.map((place, i) => {
           return (
