@@ -13,8 +13,8 @@ export default function UserComments({ commentsData, user, endpoint }) {
       {commentsData.length > 0 ? (
         commentsData.map((comment) => {
           return (
-            <div key={comment.id} className="bg-blue-950">
-              {user.username === comment.username ? (
+            <div key={comment.id} className="">
+              {user?.username === comment.username ? (
                 <form action={DeleteComment}>
                   <input
                     type="text"
@@ -31,6 +31,7 @@ export default function UserComments({ commentsData, user, endpoint }) {
                   </button>
                 </form>
               ) : null}
+
               <p>comment by: {comment.username}</p>
               <p>comment: {comment.comment}</p>
               <p>rating: {comment.rating}</p>

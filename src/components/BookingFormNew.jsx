@@ -1,5 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
+import style from "./BookingForm.module.css";
+
 export default function BookingFormNew({ data, user }) {
   const [chosenDate, setChosenDate] = useState(0);
   const [bookings, setBookings] = useState({});
@@ -42,11 +44,11 @@ export default function BookingFormNew({ data, user }) {
   }
 
   return (
-    <div className="flex justify-evenly">
-      <form className="flex flex-col border border-white">
+    <div className={`${style.forms}`}>
+      <form className={`${style.datePicker}`}>
         <label htmlFor="date">Select Date:</label>
         <input
-          className="m-2 border border-white"
+          className="m-2 border border-(--accent-colour) p-1"
           type="date"
           name="date"
           defaultValue={chosenDate}
@@ -57,52 +59,34 @@ export default function BookingFormNew({ data, user }) {
         />
       </form>
       {bookings.rowCount < data.booking_slots && chosenDate > 0 ? (
-        <form
-          action={ConfirmBooking}
-          className="flex flex-col border border-white"
-        >
-          <div>
+        <form action={ConfirmBooking} className={`${style.bookingDetails}`}>
+          <div className={`${style.bookingFormGroup}`}>
             <label htmlFor="name">Contact Name:</label>
-            <input
-              type="text"
-              name="name"
-              className="border border-white m-2"
-              required
-            />
+            <input type="text" name="name" required />
           </div>
 
-          <div>
+          <div className={`${style.bookingFormGroup}`}>
             <label htmlFor="phone">Phone:</label>
-            <input
-              type="text"
-              name="phone"
-              className="border border-white m-2"
-              required
-            />
+            <input type="text" name="phone" required />
           </div>
 
-          <div>
+          <div className={`${style.bookingFormGroup}`}>
             <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              name="email"
-              className="border border-white m-2"
-              required
-            />
+            <input type="email" name="email" required />
           </div>
 
-          <div>
+          <div className={`${style.bookingFormGroup}`}>
             <label htmlFor="">Group Size:</label>
-            <input
-              type="number"
-              name="groupsize"
-              className="border border-white m-2"
-            />
+            <input type="number" name="groupsize" />
           </div>
-          <button type="submit">Confirm Booking</button>
+          <button type="submit" className="confirmButton w-fit mx-auto">
+            Confirm Booking
+          </button>
         </form>
       ) : (
-        <p>No Availability For Selected Date</p>
+        <p className="text-(--accent-colour)">
+          No Availability For Selected Date
+        </p>
       )}
     </div>
   );

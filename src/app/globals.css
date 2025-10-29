@@ -76,4 +76,13 @@ body {
   flex: 1;
 }
 
-
+.confirmButton {
+  background-color: var(--card-colour);
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--accent-colour);
+  border-radius: 0.5rem;
+  &:hover {
+    background-color: var(--hover-colour);
+    color: black;
+  }
+}
