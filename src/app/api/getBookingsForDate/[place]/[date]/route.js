@@ -1,9 +1,9 @@
 import { db } from "@/utils/dbConnection";
 
 export async function GET(request, params) {
-  const myParams = await params;
-  const placeParam = await myParams.params.place;
-  const dateParam = await myParams.params.date;
+  const myParams = await params.params;
+  const placeParam = await myParams.place;
+  const dateParam = await myParams.date;
 
   try {
     const query = await db.query(
