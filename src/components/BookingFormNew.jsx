@@ -4,12 +4,12 @@ export default function BookingFormNew({ data, user }) {
   const [chosenDate, setChosenDate] = useState(0);
   const [bookings, setBookings] = useState({});
 
-  function SetDate(formData) {
-    console.log("submitted");
-    const date = formData.get("date");
-    const newDate = Date.parse(date);
-    setChosenDate(newDate);
-  }
+  // function SetDate(formData) {
+  //   console.log("submitted");
+  //   const date = formData.get("date");
+  //   const newDate = Date.parse(date);
+  //   setChosenDate(newDate);
+  // }
 
   const endpoint = data.endpoint;
 
@@ -28,7 +28,7 @@ export default function BookingFormNew({ data, user }) {
 
   return (
     <div className="flex justify-evenly">
-      <form action={SetDate} className="flex flex-col border border-white">
+      <form className="flex flex-col border border-white">
         <label htmlFor="date">Select Date:</label>
         <input
           className="m-2 border border-white"
@@ -40,7 +40,6 @@ export default function BookingFormNew({ data, user }) {
           }}
           required
         />
-        <button type="submit">Submit</button>
       </form>
       {bookings.rowCount < data.booking_slots && chosenDate > 0 ? (
         <form className="flex flex-col border border-white">

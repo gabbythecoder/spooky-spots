@@ -42,7 +42,10 @@ export default function MyMap(props) {
       const coords = { lat: place.x, lng: place.y };
       return (
         <Marker key={index} position={coords}>
-          <Popup>{place.name}</Popup>
+          <Popup>
+            {place.name} <br />
+            {place.city}
+          </Popup>
         </Marker>
       );
     });
@@ -51,8 +54,8 @@ export default function MyMap(props) {
   return (
     <div className={`w-[${props.width}]% h-[${props.height}]vh`}>
       <MapContainer
-        center={{ lat: 53.5, lng: -1.509 }}
-        zoom={8}
+        center={{ lat: 51.53592923078666, lng: -0.44769287109375006 }}
+        zoom={7}
         style={{ height: `${props.height}vh`, width: `${props.width}%` }}
         scrollWheelZoom={true}
       >
@@ -62,11 +65,9 @@ export default function MyMap(props) {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {/* <Marker position={{ lat: 51.505, lng: -0.09 }}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker> */}
+        <Marker position={{ lat: 51.505, lng: -0.09 }}>
+          <Popup>Our office: Contact us here</Popup>
+        </Marker>
       </MapContainer>
     </div>
   );
