@@ -39,15 +39,17 @@ JOIN users ON comments.users_id = users.clerk_id WHERE comments.place_id = $1`,
       users_id: formData.get("userid"),
       comment: formData.get("comment"),
       rating: formData.get("rating"),
+      timestamp: parsedNow,
     };
     console.log(formValues);
     db.query(
-      `INSERT INTO comments (place_id, users_id, comment, rating) VALUES ($1, $2, $3, $4)`,
+      `INSERT INTO comments (place_id, users_id, comment, rating, timestamp) VALUES ($1, $2, $3, $4, $5)`,
       [
         formValues.place_id,
         formValues.users_id,
         formValues.comment,
         formValues.rating,
+        formValues.timestamp,
       ]
     );
 
@@ -63,13 +65,13 @@ JOIN users ON comments.users_id = users.clerk_id WHERE comments.place_id = $1`,
             <div className="text-center">
               <Link
                 href={`/${myParams.place}/manage`}
-                className="border border-white p-1 bg-red-900"
+                className="text-sm border border-gray-500 px-3 py-1 rounded hover:bg-red-600 hover:border-red-600 transition-colors text-white"
               >
                 Manage
               </Link>{" "}
               <Link
                 href={`/${myParams.place}/edit`}
-                className="border border-white p-1 bg-red-900"
+                className="text-sm border border-gray-500 px-3 py-1 rounded hover:bg-red-600 hover:border-red-600 transition-colors text-white"
               >
                 Edit
               </Link>
@@ -80,7 +82,7 @@ JOIN users ON comments.users_id = users.clerk_id WHERE comments.place_id = $1`,
         <h1>No Place Found</h1>
       )}
 
-      <section className="flex gap-5 bg-blue-950">
+      <section className="bg-blue-950">
         <div>
           {placeData ? (
             <Image
@@ -91,7 +93,8 @@ JOIN users ON comments.users_id = users.clerk_id WHERE comments.place_id = $1`,
             />
           ) : null}
         </div>
-        <div>Services Section</div>
+        <div>{placeData.services}</div>
+        <div>{placeData.description}</div>
       </section>
 
       <section className="bg-blue-950">

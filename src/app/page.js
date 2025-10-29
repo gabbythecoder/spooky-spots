@@ -19,7 +19,7 @@ export default function HomePage() {
 
   useEffect(() => {
     async function getPlaceData() {
-      //localhost url for now 
+      //localhost url for now
       const response = await fetch("http://localhost:3000/api/places");
       const data = await response.json();
       setPlaces(data.rows);
@@ -45,32 +45,33 @@ export default function HomePage() {
       <Map placeData={places} width={50} height={35} />
 
       <h2>Browse our lists of Spooky Spots</h2>
-      {places.length > 0 && places.map((place, i) => {
-        return (
-          <div key={i} className="flex gap-5 mb-4">
-            {place.image_url ? (
-              <Link href={`/${place.endpoint}`}>
-                <Image
-                  src={place.image_url}
-                  alt={place.services}
-                  width={130}
-                  height={170}
-                />
-              </Link>
-            ) : (
-              <div className="flex items-center justify-center border border-white-300 w-[130px] h-[170px] text-s p-1">
-                <p>Image will be available soon</p>
-              </div>
-            )}
+      {places.length > 0 &&
+        places.map((place, i) => {
+          return (
+            <div key={i} className="flex gap-5 mb-4">
+              {place.image_url ? (
+                <Link href={`/${place.endpoint}`}>
+                  <Image
+                    src={place.image_url}
+                    alt={place.services}
+                    width={130}
+                    height={170}
+                  />
+                </Link>
+              ) : (
+                <div className="flex items-center justify-center border border-white-300 w-[130px] h-[170px] text-s p-1">
+                  <p>Image will be available soon</p>
+                </div>
+              )}
 
-            <div>
-              <h2>{place.name}</h2>
-              <p>{place.city}</p>
-              <p>{place.services}</p>
+              <div>
+                <h2>{place.name}</h2>
+                <p>{place.city}</p>
+                <p>{place.services}</p>
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
     </div>
   );
 }

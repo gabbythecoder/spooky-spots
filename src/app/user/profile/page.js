@@ -52,7 +52,7 @@ export default async function UserProfilePage() {
       id: booking.booking_id,
       placeName: booking.place_name,
       city: booking.city,
-      date: booking.date,
+      date: new Date(Number(booking.date)).toDateString(),
       completed: booking.completed,
       groupSize: booking.group_size,
     }));
