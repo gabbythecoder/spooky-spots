@@ -62,11 +62,11 @@ export default function MyMap(props) {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={{ lat: 51.505, lng: -0.09 }}>
+        {/* <Marker position={{ lat: 51.505, lng: -0.09 }}>
           <Popup>
             A pretty CSS3 popup. <br /> Easily customizable.
           </Popup>
-        </Marker>
+        </Marker> */}
       </MapContainer>
     </div>
   );
