@@ -29,23 +29,18 @@ export default async function Header() {
               >
                 Home
               </Link>
-              <Link
-                href={"/user/profile"}
-                className="text-gray-300 hover:text-red-400 transition-colors text-lg font-medium"
-              >
-                Profile
-              </Link>
-              <Link
-                href={"/hellfire-caves"}
-                className="text-gray-300 hover:text-red-400 transition-colors text-lg font-medium"
-              >
-                Hellfire Caves
-              </Link>
+              <SignedIn>
+                <Link
+                  href={"/user/profile"}
+                  className="text-gray-300 hover:text-red-400 transition-colors text-lg font-medium"
+                >
+                  Profile
+                </Link>
+              </SignedIn>
             </nav>
 
             <div className="flex items-center gap-3">
               <SignedIn>
-                <UserButton />
                 <SignOutButton>
                   <button className="text-sm border border-gray-500 px-3 py-1 rounded hover:bg-red-600 hover:border-red-600 transition-colors text-white">
                     Sign Out

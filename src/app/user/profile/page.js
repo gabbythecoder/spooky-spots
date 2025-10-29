@@ -1,8 +1,12 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { db } from "@/utils/dbConnection";
+import { redirect } from "next/navigation";
 
 export default async function UserProfilePage() {
   const user = await currentUser();
+  if (!user) {
+    redirect("/");
+  }
 
   const clerkId = user.id;
   let profile = [];
