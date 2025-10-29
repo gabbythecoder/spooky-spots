@@ -19,7 +19,7 @@ export default function HomePage() {
 
   useEffect(() => {
     async function getPlaceData() {
-      // will need to change localhost to deployed url
+      //localhost url for now 
       const response = await fetch("http://localhost:3000/api/places");
       const data = await response.json();
       setPlaces(data.rows);
@@ -45,7 +45,7 @@ export default function HomePage() {
       <Map placeData={places} width={50} height={35} />
 
       <h2>Browse our lists of Spooky Spots</h2>
-      {places.map((place, i) => {
+      {places.length > 0 && places.map((place, i) => {
         return (
           <div key={i} className="flex gap-5 mb-4">
             {place.image_url ? (

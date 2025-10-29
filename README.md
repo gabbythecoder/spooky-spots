@@ -1,40 +1,36 @@
-Will Git Push Test
+# Spooky Spots
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+🚀 Vercel link: https://spooky-spots.vercel.app 
 
-## Getting Started
+💻 Repo link: https://github.com/gabbythecoder/spooky-spots
 
-First, run the development server:
+### Team members:
+- Sam Clark
+- Gabby French
+- Will Sparkes
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Project description:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Problem domain: 
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+User stories:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Wireframe:
+Instructions on how to run your app:
 
-## Learn More
+## Lighthouse report:
 
-To learn more about Next.js, take a look at the following resources:
+## Reflections:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Please mention the requirements you met and which goals you achieved for this assignment.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+🎯 Were there any requirements or goals that you were not quite able to achieve?
 
-## Deploy on Vercel
+🎯 If so, could you please tell us what was it that you found difficult about these tasks?
+ 
+What went really well and what could have gone better?
+Detailing useful external sources that helped you complete the assignment (e.g Youtube tutorials).
+Describing errors or bugs you encountered while completing your assignment.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-TEST SAM 2323
+## References:
+Third-party APIs, CSS resets, icons, images... 
