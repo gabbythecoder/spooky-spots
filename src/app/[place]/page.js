@@ -28,6 +28,27 @@ JOIN places ON comments.place_id = places.endpoint WHERE comments.place_id = $1`
   );
   const commentsData = await commentsResponse.rows;
 
+  async function handlePostComment(formData) {
+    "use server";
+    console.log(formData);
+    const formValues = {
+      place_id: myParams.place,
+      users_id: user.id,
+      comment: formData.get("comment"),
+      rating: formData.get("rating"),
+    };
+    console.log(formValues);
+    db.query(
+      `INSERT INTO comments (place_id, users_id, comment, rating) VALUES ($1, $2, $3, $4)`,
+      [
+        formValues.place_id,
+        formValues.users_id,
+        formValues.comment,
+        formValues.rating,
+      ]
+    );
+  }
+
   return (
     <main className="flex flex-col gap-5">
       {placeData ? (
@@ -47,7 +68,7 @@ JOIN places ON comments.place_id = places.endpoint WHERE comments.place_id = $1`
             />
           ) : null}
         </div>
-        <div>Slug Section</div>
+        <div>Services Section</div>
       </section>
 
       <section className="bg-blue-950">
@@ -66,8 +87,17 @@ JOIN places ON comments.place_id = places.endpoint WHERE comments.place_id = $1`
       <section className="bg-blue-950">
         <h2>Comments:</h2>
         {user ? (
-          <form>
+          <form action={handlePostComment}>
             <textarea name="comment" id="" placeholder="Leave a comment..." />
+            <label htmlFor="rating">Rating: </label>
+            <input
+              type="number"
+              name="rating"
+              max={10}
+              min={1}
+              className="border border-white"
+              required
+            />
             <button type="submit">Post Comment</button>
           </form>
         ) : (
