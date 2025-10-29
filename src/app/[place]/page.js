@@ -8,6 +8,7 @@ import Link from "next/link";
 import { revalidatePath } from "next/cache";
 import UserComments from "@/components/UserComments";
 import CommentForm from "@/components/CommentForm";
+import style from "./placepage.module.css";
 
 export default async function PlacePage({ params }) {
   const user = await currentUser();
@@ -36,7 +37,7 @@ JOIN users ON comments.users_id = users.clerk_id WHERE comments.place_id = $1 OR
   return (
     <main className="flex flex-col gap-5">
       {placeData ? (
-        <div className="flex flex-col">
+        <div className="flex flex-col mt-5">
           <h1 className="text-3xl text-center">{placeData.name}</h1>
           {placeData.owner_username === user?.username ? (
             <div className="text-center">
@@ -59,27 +60,36 @@ JOIN users ON comments.users_id = users.clerk_id WHERE comments.place_id = $1 OR
         <h1>No Place Found</h1>
       )}
 
-      <section className="bg-blue-950">
-        <div>
+      <section className={`${style.first}`}>
+        <div className={`${style.ImageContainer}`}>
           {placeData ? (
             <Image
-              width={100}
-              height={100}
+              className={`${style.image}`}
+              draggable="false"
+              fill
               alt={placeData.services}
               src={placeData.image_url}
             />
           ) : null}
         </div>
-        <div>{placeData.services}</div>
-        <div>{placeData.description}</div>
+        <div className={`${style.services}`}>
+          <p className="text-xl text-center text-(--accent-colour)">
+            {placeData.services}
+          </p>
+          <div className={`${style.section}`}>
+            <h2>Description:</h2>
+            <p className="text-center">{placeData.description}</p>
+          </div>
+        </div>
       </section>
 
-      <section className="bg-blue-950">
+      <section className={`${style.section}`}>
         <h2>History:</h2>
         {placeData.history ? <p>{placeData.history}</p> : <p>No History Set</p>}
       </section>
 
-      <section className="bg-blue-950">
+      <section className={`${style.BookingSection}`}>
+        <h2>Booking Form</h2>
         {user ? (
           <BookingFormNew user={user.id} data={placeData} />
         ) : (
@@ -87,7 +97,7 @@ JOIN users ON comments.users_id = users.clerk_id WHERE comments.place_id = $1 OR
         )}
       </section>
 
-      <section className="bg-blue-950">
+      <section>
         <CommentForm user={user} endpoint={myParams.place} />
       </section>
 

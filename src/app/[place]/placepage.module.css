@@ -1,0 +1,63 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.section h2 {
+  font-size: 1.2rem;
+  color: var(--accent-colour);
+}
+
+.section p {
+  color: var(--font-colour);
+}
+
+.BookingSection {
+  background-color: var(--card-colour);
+  display: flex;
+  flex-direction: column;
+}
+
+.BookingSection h2 {
+  color: var(--accent-colour);
+}
+
+.image {
+  object-fit: contain;
+  background-color: black;
+}
+
+.first {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ImageContainer {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+}
+
+.services {
+  padding: 1rem;
+  margin: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 600px) {
+  .first {
+    flex-direction: row;
+  }
+
+  .ImageContainer {
+    width: 50%;
+  }
+
+  .services {
+    width: 50%;
+  }
+}

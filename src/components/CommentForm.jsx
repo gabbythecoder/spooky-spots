@@ -1,5 +1,6 @@
 import { db } from "@/utils/dbConnection";
 import { revalidatePath } from "next/cache";
+import style from "./CommentForm.module.css";
 
 export default function CommentForm({ user, endpoint }) {
   async function handlePostComment(formData) {
@@ -30,29 +31,36 @@ export default function CommentForm({ user, endpoint }) {
   return (
     <>
       {user ? (
-        <form action={handlePostComment} className="flex flex-col">
-          <textarea
-            name="comment"
-            id=""
-            placeholder="Leave a comment..."
-            required
-          />
-          <label htmlFor="rating">Rating: </label>
-          <input
-            type="text"
-            name="userid"
-            value={user.id || null}
-            readOnly
-            hidden
-          />
-          <input
-            type="number"
-            name="rating"
-            max={10}
-            min={1}
-            className="border border-white"
-          />
-          <button type="submit">Post Comment</button>
+        <form action={handlePostComment} className={`${style.form}`}>
+          <div className={`${style.formGroup}`}>
+            <label htmlFor="comment">Comment</label>
+            <textarea
+              name="comment"
+              id=""
+              placeholder="Enter your comment here"
+              required
+            />
+          </div>
+          <div className={`${style.formGroup}`}>
+            <label htmlFor="rating">Rating: </label>
+            <input
+              type="text"
+              name="userid"
+              value={user.id || null}
+              readOnly
+              hidden
+            />
+            <input
+              type="number"
+              name="rating"
+              max={10}
+              min={1}
+              className="border border-white"
+            />
+          </div>
+          <button type="submit" className="confirmButton w-fit mx-auto">
+            Post Comment
+          </button>
         </form>
       ) : (
         <p>Login to leave a comment</p>
