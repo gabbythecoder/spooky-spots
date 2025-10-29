@@ -1,7 +1,7 @@
-import { Nunito_Sans } from "next/font/google";
+import { Nunito_Sans, Creepster } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import Header from "@/components/header/Header";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const nunitoSans = Nunito_Sans({
@@ -9,6 +9,12 @@ const nunitoSans = Nunito_Sans({
   style: ["normal", "italic"],
   subsets: ["latin"],
 });
+
+const creepster = Creepster ({
+  weight: ["400"],
+  subsets: ["latin"],
+  variable: "--font-creepster",
+})
 
 export const metadata = {
   title: "Spooky Spots",
@@ -19,7 +25,7 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={nunitoSans.className}>
+        <body className={`${nunitoSans.className} ${creepster.variable}`}>
           <Header />
           <main className="main-content">{children}</main>
           <Footer />
