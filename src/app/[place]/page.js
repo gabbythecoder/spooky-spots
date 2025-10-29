@@ -32,7 +32,7 @@ JOIN users ON comments.users_id = users.clerk_id WHERE comments.place_id = $1`,
 
   async function handlePostComment(formData) {
     "use server";
-    if (!user) {
+    if (!user.id) {
       return;
     }
     console.log(formData);
