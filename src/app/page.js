@@ -34,45 +34,47 @@ export default function HomePage() {
     <div className="homepage-container">
       <section>
         <div className="hero-section">
-          <h1>Welcome to Spooky Spots!</h1>
+          <h2>Dare to explore the unknown?</h2>
           <p>
-            Uncover haunted sites, eerie tours and real stories of the
-            paranormal. Spooky Spots is your guide to the world&apos;s most
-            chilling destinations.
+            Step into the shadows with Spooky Spots and uncover haunted hideaways, ghostly tours and true tales from the beyond. 
           </p>
-          <h2>Discover haunted places near you!</h2>
+          <p>
+            Your guide to the world&apos;s most chilling - and unforgettable - destinations.
+          </p>
+          <h3>Find your next ghostly destination - if you&apos;re brave enough! 👻</h3>
         </div>
       </section>
 
+      <h2 className="map-title">Follow the Ghostly Trail</h2>
       <Map placeData={places} width={80} height={60} />
 
-      <h2 className="text-center">Browse our lists of Spooky Spots</h2>
+      <h2 className="place-card-title">Discover Your Next Haunted Adventure</h2>
       {places.length > 0 &&
         places.map((place, i) => {
           return (
-            <div key={i} className="place-card">
-              {place.image_url ? (
-                <Link href={`/${place.endpoint}`}>
+            <Link href={`/${place.endpoint}`} key={i} className="place-card">
+              <div className="place-image-wrapper">
+                {place.image_url ? (
                   <Image
                     src={place.image_url}
                     alt={place.services}
-                    width={130}
-                    height={170}
+                    width={140}
+                    height={180}
                     className="place-image"
                   />
-                </Link>
-              ) : (
-                <div className="flex items-center justify-center border border-white-300 w-[130px] h-[170px] text-s p-1">
-                  <p>Image will be available soon</p>
-                </div>
-              )}
+                ) : (
+                  <div className="flex items-center justify-center border border-white-300 w-[130px] h-[170px] text-s p-1">
+                    <p>Image coming soon!</p>
+                  </div>
+                )}
+              </div>
 
               <div className="place-info">
-                <h2>{place.name}</h2>
-                <p>{place.city}</p>
-                <p>{place.services}</p>
+                <h3 className="place-info-name">{place.name}</h3>
+                <p className="place-info-city">{place.city}</p>
+                <p className="place-info-services">{place.services}</p>
               </div>
-            </div>
+            </Link>
           );
         })}
     </div>

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import styles from "./Header.module.css";
 
 import {
   UserButton,
@@ -14,10 +13,10 @@ export default async function Header() {
   return (
     <>
       <div className="bg-black">
-        <header className="flex justify-between items-center p-4">
-          <div>
+        <header className="flex flex-col md:flex-row justify-between items-center p-4">
+          <div className="mb-4 md:mb-0">
             <h1 className="text-3xl font-extrabold text-white-500">
-              Spooky Spots
+              <Link href={"/"}>Spooky Spots</Link>
             </h1>
           </div>
 
@@ -25,14 +24,14 @@ export default async function Header() {
             <nav className="flex space-x-4">
               <Link
                 href={"/"}
-                className="text-gray-300 hover:text-red-400 transition-colors text-lg font-medium"
+                className="hover:text-(--hover-colour) transition-colors text-lg font-medium"
               >
                 Home
               </Link>
               <SignedIn>
                 <Link
                   href={"/user/profile"}
-                  className="text-gray-300 hover:text-red-400 transition-colors text-lg font-medium"
+                  className="hover:text-(--hover-colour) transition-colors text-lg font-medium"
                 >
                   Profile
                 </Link>
@@ -42,7 +41,7 @@ export default async function Header() {
             <div className="flex items-center gap-3">
               <SignedIn>
                 <SignOutButton>
-                  <button className="text-sm border border-gray-500 px-3 py-1 rounded hover:bg-red-600 hover:border-red-600 transition-colors text-white">
+                  <button className="text-m border border-white-500 px-3 py-1 rounded-xl hover:text-black hover:bg-(--hover-colour) text-(--font-colour) cursor-pointer transition-colors">
                     Sign Out
                   </button>
                 </SignOutButton>
@@ -50,12 +49,12 @@ export default async function Header() {
 
               <SignedOut>
                 <SignInButton>
-                  <button className="text-sm border border-gray-500 px-3 py-1 rounded hover:bg-gray-700 transition-colors text-white">
+                  <button className="text-m border border-white-500 px-3 py-1 rounded-xl hover:text-black hover:bg-(--hover-colour) text-(--font-colour) transition-colors">
                     Login
                   </button>
                 </SignInButton>
                 <SignUpButton>
-                  <button className="text-sm bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition-colors">
+                  <button className="text-m border border-white-500 px-3 py-1 rounded-xl hover:text-black hover:bg-(--hover-colour) text-(--font-colour) transition-colors">
                     Sign-up
                   </button>
                 </SignUpButton>
