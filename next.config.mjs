@@ -3,13 +3,6 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "upload.wikimedia.org",
-      },
-      {
-        hostname: "**",
-      },
-      {
         hostname: "**",
       },
     ],

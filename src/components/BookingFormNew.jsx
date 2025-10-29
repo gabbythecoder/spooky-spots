@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 export default function BookingFormNew({ data, user }) {
-  const [chosenDate, setChosenDate] = useState("");
-  const [bookings, setBookings] = useState([]);
+  const [chosenDate, setChosenDate] = useState(1761609600000);
+  const [bookings, setBookings] = useState({});
 
   function SetDate(formData) {
     console.log("submitted");
@@ -14,23 +14,35 @@ export default function BookingFormNew({ data, user }) {
   const endpoint = data.endpoint;
 
   useEffect(() => {
-    async function getBookingsData(endpoint) {
-      console.log(`endpoint: ${endpoint}`);
-      console.log(`date: ${chosenDate}`);
+    async function getBookingsData() {
+      // console.log(`endpoint: ${endpoint}`);
+      // console.log(`date: ${chosenDate}`);
       const response = await fetch(
-        `http://localhost:3000/api/getBookingsForDate/${data.endpoint}/${chosenDate}`
+        `http://localhost:3000/api/getBookingsForDate/${endpoint}/${chosenDate}`
       );
       const myData = await response.json();
-      setBookings(myData.rows);
+      setBookings(myData);
     }
-    getBookingsData(endpoint);
+    getBookingsData();
   }, [chosenDate]);
 
   return (
     <>
-      <p>{chosenDate}</p>
+      {bookings.rowCount < data.booking_slots ? (
+        <p>Slots Available</p>
+      ) : (
+        <p>Fully Booked</p>
+      )}
       <form action={SetDate}>
-        <input type="date" name="date" defaultValue={chosenDate} required />
+        <input
+          type="date"
+          name="date"
+          defaultValue={chosenDate}
+          onChange={(e) => {
+            setChosenDate(Date.parse(e.target.value));
+          }}
+          required
+        />
         <button type="submit">Submit</button>
       </form>
     </>
