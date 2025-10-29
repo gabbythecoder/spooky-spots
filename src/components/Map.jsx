@@ -56,7 +56,7 @@ export default function MyMap(props) {
   return (
     <div className="flex justify-center">
       <MapContainer
-        center={{ lat: 51.53592923078666, lng: -0.44769287109375006 }}
+        center={{ lat: 52.69683795165007, lng: -1.4563741087682107 }}
         zoom={7}
         style={{ height: `${props.height}vh`, width: `${props.width}%` }}
         scrollWheelZoom={true}

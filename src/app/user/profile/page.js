@@ -70,67 +70,92 @@ export default async function UserProfilePage() {
 
   return (
     <>
-      <div className="flex flex-col items-center p-4">
+      <div className="flex flex-col items-center p-4 main-content">
         <div className="w-full max-w-2xl">
           <div>
-            <h2 className="text-3xl font-bold mb-6 text-center text-white">
+            <h2
+              className="text-5xl font-bold mb-6 text-center mt-8 
+                   text-(--font-colour)"
+            >
               {displayName}&apos;s Profile
             </h2>
           </div>
 
-          <div className="mb-8 p-4 border border-gray-700 rounded-lg bg-gray-800 shadow-xl">
-            <h3 className="text-xl font-semibold mb-2 text-white-400">
+          <div className="mb-8 p-4 rounded-lg shadow-xl place-card">
+            <h3
+              className="text-xl font-semibold mb-2 
+                   text-(--secondary-accent-colour)"
+            >
               Contact Information
             </h3>
             {contactInfo ? (
-              <div className="space-y-1 text-white-300">
+              <div className="space-y-1 text-(--font-colour)">
                 <p>
-                  <span className="font-medium text-white">Phone Number:</span>{" "}
+                  <span className="font-medium text-(--font-colour)">
+                    Phone Number:
+                  </span>{" "}
                   {contactInfo.usernumber}
                 </p>
                 <p>
-                  <span className="font-medium text-white">
+                  <span className="font-medium text-(--font-colour)">
                     Optional Email:
                   </span>{" "}
                   {contactInfo.optionalemail}
                 </p>
                 <p>
-                  <span className="font-medium text-white">
+                  <span className="font-medium text-(--font-colour)">
                     Additional Info:
                   </span>{" "}
                   {contactInfo.additionalinfo}
                 </p>
               </div>
             ) : (
-              <p>No contact information available in the database.</p>
+              <p className="text-(--font-colour)">
+                No contact information available in the database.
+              </p>
             )}
           </div>
 
-          <h3 className="text-xl font-semibold mb-3 text-white-400">
+          <h3
+            className="text-xl font-semibold mb-3 
+                 text-(--secondary-accent-colour)"
+          >
             Bookings
           </h3>
+
           <div>
             {bookingInfo.length > 0 ? (
               <ul className="space-y-4">
                 {bookingInfo.map((booking, index) => (
                   <li
                     key={index}
-                    className="p-4 border border-gray-700 rounded-lg bg-gray-800 shadow-lg text-white-300"
+                    className="p-4 rounded-lg shadow-lg place-card"
                   >
-                    <p className="font-bold text-lg mb-1 text-white border-b border-gray-700 pb-2">
+                    <p
+                      className="font-bold text-lg mb-1 
+                           text-(--font-colour) 
+                           border-(--secondary-accent-colour)
+                           pb-2"
+                    >
                       {booking.placeName}
                     </p>
-                    <div className="space-y-1 text-sm pt-2">
+                    <div className="space-y-1 text-sm text-(--font-colour) pt-2">
                       <p>
-                        <span className="font-medium text-white">Place:</span>{" "}
+                        <span className="font-medium text-(--font-colour)">
+                          Place:
+                        </span>{" "}
                         {booking.placeName}, {booking.city}
                       </p>
                       <p>
-                        <span className="font-medium text-white">Date:</span>{" "}
+                        <span className="font-medium text-(--font-colour)">
+                          Date:
+                        </span>{" "}
                         {booking.date}
                       </p>
                       <p>
-                        <span className="font-medium text-white">Status:</span>{" "}
+                        <span className="font-medium text-(--font-colour)">
+                          Status:
+                        </span>{" "}
                         <span
                           className={
                             booking.completed
@@ -142,7 +167,7 @@ export default async function UserProfilePage() {
                         </span>
                       </p>
                       <p>
-                        <span className="font-medium text-white">
+                        <span className="font-medium text-(--font-colour)">
                           Group Size:
                         </span>{" "}
                         {booking.groupSize}
@@ -152,7 +177,9 @@ export default async function UserProfilePage() {
                 ))}
               </ul>
             ) : (
-              <p>You have no bookings at this time.</p>
+              <p className="text-(--font-colour)">
+                You have no bookings at this time.
+              </p>
             )}
           </div>
         </div>

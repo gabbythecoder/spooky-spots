@@ -31,6 +31,17 @@ body {
   padding: 0rem 10%;
 }
 
+.confirmButton {
+  background-color: var(--card-colour);
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--accent-colour);
+  border-radius: 0.5rem;
+  &:hover {
+    background-color: var(--hover-colour);
+    color: black;
+  }
+}
+
 /* === "/" page styling === */
 .homepage-container {
   display: flex;
@@ -155,3 +166,4 @@ body {
     font-size: 0.9rem;
   }
 }
+
