@@ -1,4 +1,5 @@
 import Link from "next/link";
+import styles from "./Header.module.css";
 
 import {
   UserButton,
@@ -13,7 +14,7 @@ export default async function Header() {
   return (
     <>
       <div>
-        <header className="flex justify-between items-center p-4 bg-gray-900 text-white shadow-lg">
+        <header className="flex justify-between items-center p-4">
           <div>
             <h1 className="text-3xl font-extrabold text-white-500">
               Spooky Spots

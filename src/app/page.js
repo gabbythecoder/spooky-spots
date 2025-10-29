@@ -31,24 +31,26 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div>
+    <div className="homepage-container">
       <section>
-        <h1>Welcome to Spooky Spots</h1>
-        <p>
-          Uncover haunted sites, eerie tours and real stories of the paranormal.
-          Spooky Spots is your guide to the world&apos;s most chilling
-          destinations.
-        </p>
+        <div className="hero-section">
+          <h1>Welcome to Spooky Spots!</h1>
+          <p>
+            Uncover haunted sites, eerie tours and real stories of the
+            paranormal. Spooky Spots is your guide to the world&apos;s most
+            chilling destinations.
+          </p>
+          <h2>Discover haunted places near you!</h2>
+        </div>
       </section>
 
-      <h2>Discover haunted places near you!</h2>
       <Map placeData={places} width={50} height={35} />
 
       <h2>Browse our lists of Spooky Spots</h2>
       {places.length > 0 &&
         places.map((place, i) => {
           return (
-            <div key={i} className="flex gap-5 mb-4">
+            <div key={i} className="place-card">
               {place.image_url ? (
                 <Link href={`/${place.endpoint}`}>
                   <Image
@@ -56,6 +58,7 @@ export default function HomePage() {
                     alt={place.services}
                     width={130}
                     height={170}
+                    className="place-image"
                   />
                 </Link>
               ) : (
@@ -64,7 +67,7 @@ export default function HomePage() {
                 </div>
               )}
 
-              <div>
+              <div className="place-info">
                 <h2>{place.name}</h2>
                 <p>{place.city}</p>
                 <p>{place.services}</p>
