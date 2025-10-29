@@ -1,15 +1,22 @@
 @import "tailwindcss";
 
 /* === Basic === */
+:root {
+  --background-colour: #121212;
+  --font-colour: #f5f5f5;
+  --hover-colour: #ffa45b;
+  --accent-colour: #ff6b35;
+  --secondary-accent-colour: #ff865c;
+  --card-colour: #1e1e1e;
+}
 
 html,
-body,
-:root {
+body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #2b2d42;
-  color: #fff;
+  background-color: var(--background-colour);
+  color: var(--font-colour);
 }
 
 body {
@@ -21,3 +28,52 @@ body {
   flex-grow: 1;
   padding: 0rem 10%;
 }
+
+/* === "/" page styling === */
+.homepage-container {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem auto;
+}
+
+.hero-section {
+  background-color: var(--card-colour);
+  padding: 1rem;
+  text-align: center;
+  border-radius: 12px;
+  max-width: 700px;
+  margin: 1rem auto;
+  box-shadow: 0 2px 6px rgba(255, 107, 53, 0.6),
+    0 4px 12px rgba(255, 107, 53, 0.4), 0 8px 24px rgba(255, 107, 53, 0.2);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.place-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem auto;
+  padding: 1rem 2rem;
+  width: 700px;
+  border: 2px solid var(--secondary-accent-colour);
+  border-radius: 12px;
+  background-color: var(--card-colour);
+  box-shadow: 0 2px 6px rgba(255, 107, 53, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.place-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.5);
+}
+
+.place-image {
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.place-info {
+  flex: 1;
+}
+
+
