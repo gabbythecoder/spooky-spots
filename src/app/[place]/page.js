@@ -6,9 +6,12 @@ import BookingForm from "@/components/BookingForm";
 import BookingFormNew from "@/components/BookingFormNew";
 import Link from "next/link";
 import { revalidatePath } from "next/cache";
+import UserComments from "@/components/UserComments";
+import CommentForm from "@/components/CommentForm";
 
 export default async function PlacePage({ params }) {
   const user = await currentUser();
+  console.log(Date.now());
 
   const myParams = await params;
 
@@ -23,38 +26,12 @@ export default async function PlacePage({ params }) {
   }
 
   const commentsResponse = await db.query(
-    `SELECT id, place_id, rating, users.username, comments.comment FROM comments
+    `SELECT id, place_id, rating, users.username, comments.comment, comments.timestamp FROM comments
 JOIN places ON comments.place_id = places.endpoint
-JOIN users ON comments.users_id = users.clerk_id WHERE comments.place_id = $1`,
+JOIN users ON comments.users_id = users.clerk_id WHERE comments.place_id = $1 ORDER BY timestamp DESC`,
     [myParams.place]
   );
-  const commentsData = await commentsResponse.rows;
-
-  async function handlePostComment(formData) {
-    "use server";
-
-    console.log(formData);
-    const formValues = {
-      place_id: myParams.place,
-      users_id: formData.get("userid"),
-      comment: formData.get("comment"),
-      rating: formData.get("rating"),
-      timestamp: parsedNow,
-    };
-    console.log(formValues);
-    db.query(
-      `INSERT INTO comments (place_id, users_id, comment, rating, timestamp) VALUES ($1, $2, $3, $4, $5)`,
-      [
-        formValues.place_id,
-        formValues.users_id,
-        formValues.comment,
-        formValues.rating,
-        formValues.timestamp,
-      ]
-    );
-
-    revalidatePath(`/${myParams.place}`);
-  }
+  const commentsData = commentsResponse.rows;
 
   return (
     <main className="flex flex-col gap-5">
@@ -111,48 +88,15 @@ JOIN users ON comments.users_id = users.clerk_id WHERE comments.place_id = $1`,
       </section>
 
       <section className="bg-blue-950">
-        <h2>Leave a comment:</h2>
-        {user ? (
-          <form action={handlePostComment}>
-            <textarea name="comment" id="" placeholder="Leave a comment..." />
-            <label htmlFor="rating">Rating: </label>
-            <input
-              type="text"
-              name="userid"
-              value={user.id || null}
-              readOnly
-              hidden
-            />
-            <input
-              type="number"
-              name="rating"
-              max={10}
-              min={1}
-              className="border border-white"
-              required
-            />
-            <button type="submit">Post Comment</button>
-          </form>
-        ) : (
-          <p>Login to leave a comment</p>
-        )}
+        <CommentForm user={user} endpoint={myParams.place} />
       </section>
 
       <section className="flex flex-col gap-5">
-        <h2>User Comments:</h2>
-        {commentsData.length > 0 ? (
-          commentsData.map((comment) => {
-            return (
-              <div key={comment.id} className="bg-blue-950">
-                <p>comment by: {comment.username}</p>
-                <p>comment: {comment.comment}</p>
-                <p>rating: {comment.rating}</p>
-              </div>
-            );
-          })
-        ) : (
-          <p>No Comments</p>
-        )}
+        <UserComments
+          commentsData={commentsData}
+          user={user}
+          endpoint={myParams.place}
+        />
       </section>
     </main>
   );

@@ -4,13 +4,6 @@ export default function BookingFormNew({ data, user }) {
   const [chosenDate, setChosenDate] = useState(0);
   const [bookings, setBookings] = useState({});
 
-  // function SetDate(formData) {
-  //   console.log("submitted");
-  //   const date = formData.get("date");
-  //   const newDate = Date.parse(date);
-  //   setChosenDate(newDate);
-  // }
-
   const endpoint = data.endpoint;
 
   useEffect(() => {
@@ -25,6 +18,28 @@ export default function BookingFormNew({ data, user }) {
     }
     getBookingsData();
   }, [chosenDate]);
+
+  function ConfirmBooking(formData) {
+    const formValues = {
+      place_id: endpoint,
+      user_id: user,
+      name: formData.get("name"),
+      phone: formData.get("phone"),
+      email: formData.get("email"),
+      date: chosenDate,
+      groupsize: formData.get("groupsize"),
+    };
+
+    fetch("http://localhost:3000/api/confirmbooking", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ formValues }),
+    });
+
+    console.log(formValues);
+  }
 
   return (
     <div className="flex justify-evenly">
@@ -42,9 +57,48 @@ export default function BookingFormNew({ data, user }) {
         />
       </form>
       {bookings.rowCount < data.booking_slots && chosenDate > 0 ? (
-        <form className="flex flex-col border border-white">
-          <label htmlFor="">Group Size:</label>
-          <input type="number" className="border border-white m-2" />
+        <form
+          action={ConfirmBooking}
+          className="flex flex-col border border-white"
+        >
+          <div>
+            <label htmlFor="name">Contact Name:</label>
+            <input
+              type="text"
+              name="name"
+              className="border border-white m-2"
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="phone">Phone:</label>
+            <input
+              type="text"
+              name="phone"
+              className="border border-white m-2"
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              name="email"
+              className="border border-white m-2"
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="">Group Size:</label>
+            <input
+              type="number"
+              name="groupsize"
+              className="border border-white m-2"
+            />
+          </div>
           <button type="submit">Confirm Booking</button>
         </form>
       ) : (
