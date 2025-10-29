@@ -18,7 +18,7 @@ export default function BookingFormNew({ data, user }) {
       console.log(`endpoint: ${endpoint}`);
       console.log(`date: ${chosenDate}`);
       const response = await fetch(
-        `http://localhost:3000/api/getBookingsForDate/${data.endpoint}/${chosenDate}}`
+        `http://localhost:3000/api/getBookingsForDate/${data.endpoint}/${chosenDate}`
       );
       const myData = await response.json();
       setBookings(myData.rows);

@@ -4,10 +4,11 @@ import { currentUser } from "@clerk/nextjs/server";
 import { notFound } from "next/navigation";
 import BookingForm from "@/components/BookingForm";
 import BookingFormNew from "@/components/BookingFormNew";
+import Link from "next/link";
 
 export default async function PlacePage({ params }) {
   const user = await currentUser();
-  //console.log(user);
+  console.log(user.username);
 
   const myParams = await params;
 
@@ -52,7 +53,25 @@ JOIN places ON comments.place_id = places.endpoint WHERE comments.place_id = $1`
   return (
     <main className="flex flex-col gap-5">
       {placeData ? (
-        <h1 className="text-3xl text-center">{placeData.name}</h1>
+        <div className="flex flex-col">
+          <h1 className="text-3xl text-center">{placeData.name}</h1>
+          {placeData.owner_username === user.username ? (
+            <div className="text-center">
+              <Link
+                href={`/${myParams.place}/manage`}
+                className="border border-white p-1 bg-red-900"
+              >
+                Manage
+              </Link>{" "}
+              <Link
+                href={`/${myParams.place}/edit`}
+                className="border border-white p-1 bg-red-900"
+              >
+                Edit
+              </Link>
+            </div>
+          ) : null}
+        </div>
       ) : (
         <h1>No Place Found</h1>
       )}
