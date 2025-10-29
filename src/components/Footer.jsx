@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="p-4 bg-gray-900 text-gray-400">
+    <footer className="p-4 bg-black text-gray-400">
       <div className="flex justify-center items-center flex-wrap space-x-8">
         <div className="flex items-center space-x-3 whitespace-nowrap">
           <p className="font-semibold text-white">Sam:</p>

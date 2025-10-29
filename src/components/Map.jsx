@@ -43,8 +43,10 @@ export default function MyMap(props) {
       return (
         <Marker key={index} position={coords}>
           <Popup>
-            {place.name} <br />
-            {place.city}
+            <div className="flex flex-col items-center">
+              <Link href={`/${place.endpoint}`}>{place.name}</Link>
+              {place.city}
+            </div>
           </Popup>
         </Marker>
       );
@@ -52,7 +54,7 @@ export default function MyMap(props) {
   }
 
   return (
-    <div className={`w-[${props.width}]% h-[${props.height}]vh`}>
+    <div className="flex justify-center">
       <MapContainer
         center={{ lat: 51.53592923078666, lng: -0.44769287109375006 }}
         zoom={7}

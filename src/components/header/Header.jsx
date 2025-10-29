@@ -13,7 +13,7 @@ import {
 export default async function Header() {
   return (
     <>
-      <div>
+      <div className="bg-black">
         <header className="flex justify-between items-center p-4">
           <div>
             <h1 className="text-3xl font-extrabold text-white-500">
