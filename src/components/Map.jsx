@@ -14,7 +14,7 @@ import Link from "next/link";
 
 export default function MyMap(props) {
   const { width, height, placeData } = props;
-  console.log(placeData);
+  // console.log(placeData);
 
   function PlaceMarker() {
     const [position, setPosition] = useState(null);

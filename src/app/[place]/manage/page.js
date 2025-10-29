@@ -14,6 +14,7 @@ export default async function ManagePlace({ params }) {
   const placeData = await db.query(`SELECT * FROM places WHERE endpoint = $1`, [
     placeParam,
   ]);
+
   if (user.username !== placeData.rows[0].owner_username) {
     redirect(`/${placeParam}`);
   }

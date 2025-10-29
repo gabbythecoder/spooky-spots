@@ -7,26 +7,27 @@ export default function BookingFormNew({ data, user }) {
   function SetDate(formData) {
     console.log("submitted");
     const date = formData.get("date");
-    const newDate = new Date(date).toLocaleDateString();
+    const newDate = Date.parse(date);
     setChosenDate(newDate);
   }
+
+  const endpoint = data.endpoint;
+
   useEffect(() => {
-    async function getBookingsData() {
+    async function getBookingsData(endpoint) {
+      console.log(`endpoint: ${endpoint}`);
+      console.log(`date: ${chosenDate}`);
       const response = await fetch(
         `http://localhost:3000/api/getBookingsForDate/${data.endpoint}/${chosenDate}}`
       );
-      const data = await response.json();
-      console.log(data.rows);
-      setBookings(data.rows);
+      const myData = await response.json();
+      setBookings(myData.rows);
     }
-    getBookingsData();
+    getBookingsData(endpoint);
   }, [chosenDate]);
 
   return (
     <>
-      {bookings.map((i) => {
-        console.log(i);
-      })}
       <p>{chosenDate}</p>
       <form action={SetDate}>
         <input type="date" name="date" defaultValue={chosenDate} required />
