@@ -30,7 +30,7 @@ export default async function Header() {
                 Home
               </Link>
               <Link
-                href={"/user/usernamer"}
+                href={"/user/profile"}
                 className="text-gray-300 hover:text-red-400 transition-colors text-lg font-medium"
               >
                 Profile
