@@ -8,13 +8,18 @@ import {
 } from "react-leaflet";
 import { useState } from "react";
 import "leaflet/dist/leaflet.css";
-import "leaflet-defaulticon-compatibility";
-import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import Link from "next/link";
+
+import L from "leaflet";
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: "/leaflet/images/marker-icon-2x.png",
+  iconUrl: "/leaflet/images/marker-icon.png",
+  shadowUrl: "/leaflet/images/marker-shadow.png",
+});
 
 export default function MyMap(props) {
   const { width, height, placeData } = props;
-  // console.log(placeData);
 
   function PlaceMarker() {
     const [position, setPosition] = useState(null);
