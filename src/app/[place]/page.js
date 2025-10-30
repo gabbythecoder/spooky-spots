@@ -4,7 +4,6 @@ import { currentUser } from "@clerk/nextjs/server";
 import { notFound } from "next/navigation";
 import BookingFormNew from "@/components/BookingFormNew";
 import Link from "next/link";
-import { revalidatePath } from "next/cache";
 import UserComments from "@/components/UserComments";
 import CommentForm from "@/components/CommentForm";
 import style from "./placepage.module.css";
