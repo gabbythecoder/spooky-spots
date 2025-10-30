@@ -2,7 +2,6 @@ import { db } from "@/utils/dbConnection";
 import Image from "next/image";
 import { currentUser } from "@clerk/nextjs/server";
 import { notFound } from "next/navigation";
-import BookingForm from "@/components/BookingForm";
 import BookingFormNew from "@/components/BookingFormNew";
 import Link from "next/link";
 import { revalidatePath } from "next/cache";

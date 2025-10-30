@@ -47,7 +47,7 @@ export default function MyMap(props) {
     };
     console.log(formValues);
 
-    await fetch("http://localhost:3000/api/addnewplace", {
+    await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/addnewplace`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

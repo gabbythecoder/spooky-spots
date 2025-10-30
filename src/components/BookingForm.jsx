@@ -68,21 +68,6 @@ export default async function BookingForm({ data, user }) {
               Place Booking
             </button>
           </div>
-
-          {/* <div className="flex flex-col text-center">
-            <div className="flex flex-col">
-              <label htmlFor="name">Name</label>
-              <input type="text" name="name" className="border border-white" />
-            </div>
-            <div className="flex flex-col text-center">
-              <label htmlFor="contact">Contact</label>
-              <input
-                type="text"
-                name="contact"
-                className="border border-white"
-              />
-            </div>
-          </div> */}
         </form>
       </section>
     </>
