@@ -4,7 +4,6 @@ import { currentUser } from "@clerk/nextjs/server";
 import { notFound } from "next/navigation";
 import BookingFormNew from "@/components/BookingFormNew";
 import Link from "next/link";
-import { revalidatePath } from "next/cache";
 import UserComments from "@/components/UserComments";
 import CommentForm from "@/components/CommentForm";
 import style from "./placepage.module.css";
@@ -34,10 +33,6 @@ JOIN users ON comments.users_id = users.clerk_id WHERE comments.place_id = $1 OR
   const commentsData = commentsResponse.rows;
   console.log(commentsData);
 
-  function compareNumbers(a, b) {
-    return a - b;
-  }
-
   if (queryString.commentSort === "oldest") {
     commentsData.sort((a, b) => a.timestamp.localeCompare(b.timestamp));
   } else if (queryString.commentSort === "newest") {
@@ -54,16 +49,16 @@ JOIN users ON comments.users_id = users.clerk_id WHERE comments.place_id = $1 OR
         <div className="flex flex-col mt-5">
           <h1 className="text-3xl text-center">{placeData.name}</h1>
           {placeData.owner_username === user?.username ? (
-            <div className="text-center">
+            <div className="text-center mt-2 flex gap-2 justify-center">
               <Link
                 href={`/${myParams.place}/manage`}
-                className="text-sm border border-gray-500 px-3 py-1 rounded hover:bg-red-600 hover:border-red-600 transition-colors text-white"
+                className="text-sm border border-gray-500 px-3 py-1 rounded hover:bg-blue-500 hover:border-blue-500 transition-colors text-white"
               >
                 Manage
-              </Link>{" "}
+              </Link>
               <Link
                 href={`/${myParams.place}/edit`}
-                className="text-sm border border-gray-500 px-3 py-1 rounded hover:bg-red-600 hover:border-red-600 transition-colors text-white"
+                className="text-sm border border-gray-500 px-3 py-1 rounded hover:bg-blue-500 hover:border-blue-500 transition-colors text-white"
               >
                 Edit
               </Link>
@@ -103,7 +98,7 @@ JOIN users ON comments.users_id = users.clerk_id WHERE comments.place_id = $1 OR
       </section>
 
       <section className={`${style.BookingSection}`}>
-        <h2>Booking Form</h2>
+        <h2 className="text-center text-xl py-3">Booking Form</h2>
         {user ? (
           <BookingFormNew user={user.id} data={placeData} />
         ) : (
@@ -115,7 +110,7 @@ JOIN users ON comments.users_id = users.clerk_id WHERE comments.place_id = $1 OR
         <CommentForm user={user} endpoint={myParams.place} />
       </section>
 
-      <section className="flex flex-col gap-5">
+      <section className="flex flex-col gap-5 mb-10">
         <UserComments
           commentsData={commentsData}
           user={user}

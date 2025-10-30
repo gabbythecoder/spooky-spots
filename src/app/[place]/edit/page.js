@@ -19,10 +19,8 @@ export default async function EditPlace({ params }) {
   if (user.username !== placeData.rows[0].owner_username) {
     redirect(`/${placeParam}`);
   }
-  // console.log(placeData);
 
   const place = placeData.rows[0];
-  // console.log(place);
 
   //function to edit places information
   async function handlePlaceUpdate(formData) {

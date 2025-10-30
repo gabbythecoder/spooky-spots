@@ -77,7 +77,8 @@ export default async function UserProfilePage() {
               className="text-5xl font-bold mb-6 text-center mt-8 
                    text-(--font-colour)"
             >
-              {displayName}&apos;s Profile
+              {displayName.charAt(0).toUpperCase() + displayName.slice(1)}
+              &apos;s Profile
             </h2>
           </div>
 
