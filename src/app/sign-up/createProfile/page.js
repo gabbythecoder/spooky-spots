@@ -37,26 +37,62 @@ export default async function createProfilePage() {
       ]
     );
 
-    redirect("/user");
+    redirect("/");
   }
 
   return (
-    <div className="main-content">
-      <div>
-        <form action={handleSubmit}>
-          <input type="hidden" name="clerkId" value={user.id} />
-          <fieldset>
-            <legend>Contact Info</legend>
-            <label htmlFor="optionalemail">Optional email: </label>
-            <input type="text" name="optionalemail" />
-            <label htmlFor="usernumber">Number: </label>
-            <input type="text" name="usernumber" />
-            <label htmlFor="additionalinfo">Additional information: </label>
-            <textarea type="text" name="additionalinfo" />
-          </fieldset>
-          <button type="submit">Create</button>
-        </form>
-      </div>
+    <div>
+      <form action={handleSubmit} class="max-w-xl mx-auto my-8 p-6">
+        <input type="hidden" name="clerkId" value={user.id} />
+        <fieldset class="border border-(--secondary-accent-colour) p-4 rounded-lg space-y-4">
+          <legend class="text-3xl font-semibold px-2">Contact Info</legend>
+
+          <div>
+            <label
+              htmlFor="optionalemail"
+              class="block font-medium mb-1 text-xl"
+            >
+              Optional email:
+            </label>
+            <input
+              type="text"
+              name="optionalemail"
+              class="w-full p-2 rounded-md border border-(--secondary-accent-colour)"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="usernumber" class="block text-xl font-medium mb-1">
+              Number:
+            </label>
+            <input
+              type="text"
+              name="usernumber"
+              class="w-full p-2 rounded-md border border-(--secondary-accent-colour)"
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="additionalinfo"
+              class="block text-xl font-medium mb-1"
+            >
+              Additional information:
+            </label>
+            <textarea
+              name="additionalinfo"
+              rows="4"
+              class="w-full p-2 rounded-md border border-(--secondary-accent-colour)"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="mt-6 w-full confirmButton text-lg transition-all"
+          >
+            Create
+          </button>
+        </fieldset>
+      </form>
     </div>
   );
 }
