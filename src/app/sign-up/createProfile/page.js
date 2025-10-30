@@ -41,7 +41,7 @@ export default async function createProfilePage() {
   }
 
   return (
-    <div className="main-content">
+    <div>
       <div>
         <form action={handleSubmit}>
           <input type="hidden" name="clerkId" value={user.id} />
