@@ -60,8 +60,8 @@ body {
   max-width: 600px;
   width: 100%;
   margin: 2rem auto;
-  box-shadow: 0 2px 6px rgba(255, 107, 53, 0.6),
-    0 4px 12px rgba(255, 107, 53, 0.4), 0 8px 24px rgba(255, 107, 53, 0.2);
+  box-shadow: 0 2px 6px rgba(255, 134, 92, 0.6),
+    0 4px 12px rgba(255, 134, 92, 0.4), 0 8px 24px rgba(255, 134, 92, 0.2);
   transition: box-shadow 0.3s ease-in-out;
 }
 
@@ -110,6 +110,7 @@ body {
 
 .place-card:focus {
   background-color: var(--hover-colour);
+  color: #000; 
 }
 
 /* === image section === */
