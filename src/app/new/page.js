@@ -5,6 +5,13 @@ import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { db } from "@/utils/dbConnection";
 
+export async function generateMetadata({ params }) {
+  const myParams = await params;
+  return {
+    title: `Add New Spooky Spot`,
+  };
+}
+
 export default async function NewPlace() {
   const user = await currentUser();
 

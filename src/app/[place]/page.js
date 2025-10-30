@@ -8,6 +8,13 @@ import UserComments from "@/components/UserComments";
 import CommentForm from "@/components/CommentForm";
 import style from "./placepage.module.css";
 
+export async function generateMetadata({ params }) {
+  const myParams = await params;
+  return {
+    title: `Spooky Spot: ${myParams.place}`,
+  };
+}
+
 export default async function PlacePage({ params, searchParams }) {
   const queryString = await searchParams;
   const user = await currentUser();
