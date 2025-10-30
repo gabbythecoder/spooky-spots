@@ -1,22 +1,30 @@
-"use client";
-
 import "leaflet/dist/leaflet.css";
-import { useMemo } from "react";
-import dynamic from "next/dynamic";
 
-export default function NewPlace() {
-  const Map = useMemo(
-    () =>
-      dynamic(() => import("@/components/NewPlaceMap"), {
-        loading: () => <p>A map is loading</p>,
-        ssr: false,
-      }),
-    []
+import NewPlaceHandler from "@/components/PlaceMapHandler";
+import { currentUser } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+import { db } from "@/utils/dbConnection";
+
+export default async function NewPlace() {
+  const user = await currentUser();
+
+  const { rows: loggedInUser } = await db.query(
+    `SELECT clerk_id, role_id FROM users WHERE clerk_id = $1`,
+    [user.id]
   );
+  console.log(loggedInUser);
+
+  if (!user) {
+    redirect("/");
+  }
+
+  if (loggedInUser[0].role_id !== 2) {
+    redirect("/");
+  }
 
   return (
     <>
-      <Map width={50} height={50} />
+      <NewPlaceHandler />
     </>
   );
 }
