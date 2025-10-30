@@ -16,12 +16,11 @@ export default function CommentForm({ user, endpoint }) {
     };
 
     db.query(
-      `INSERT INTO comments (place_id, users_id, comment, rating, timestamp) VALUES ($1, $2, $3, $4, $5)`,
+      `INSERT INTO comments (place_id, users_id, comment, timestamp) VALUES ($1, $2, $3, $4)`,
       [
         formValues.place_id,
         formValues.users_id,
         formValues.comment,
-        formValues.rating || null,
         formValues.timestamp,
       ]
     );
@@ -42,20 +41,12 @@ export default function CommentForm({ user, endpoint }) {
             />
           </div>
           <div className={`${style.formGroup}`}>
-            <label htmlFor="rating">Rating: </label>
             <input
               type="text"
               name="userid"
               value={user.id || null}
               readOnly
               hidden
-            />
-            <input
-              type="number"
-              name="rating"
-              max={10}
-              min={1}
-              className="border border-white"
             />
           </div>
           <button type="submit" className="confirmButton w-fit mx-auto">

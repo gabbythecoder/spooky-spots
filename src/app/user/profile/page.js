@@ -81,7 +81,7 @@ export default async function UserProfilePage() {
         <div className="w-full max-w-2xl">
           <div>
             <h2
-              className="text-5xl font-bold mb-6 text-center mt-8 
+              className="text-3xl font-bold mb-6 text-center mt-8 
                    text-(--font-colour)"
             >
               {displayName.charAt(0).toUpperCase() + displayName.slice(1)}
@@ -125,7 +125,7 @@ export default async function UserProfilePage() {
           </div>
 
           <h3
-            className="text-xl font-semibold mb-3 
+            className="text-xl text-center font-semibold mb-3 
                  text-(--secondary-accent-colour)"
           >
             Bookings
