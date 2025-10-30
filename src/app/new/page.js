@@ -8,15 +8,14 @@ import { db } from "@/utils/dbConnection";
 export default async function NewPlace() {
   const user = await currentUser();
 
-  const { rows: loggedInUser } = await db.query(
-    `SELECT clerk_id, role_id FROM users WHERE clerk_id = $1`,
-    [user.id]
-  );
-  console.log(loggedInUser);
-
   if (!user) {
     redirect("/");
   }
+
+  const { rows: loggedInUser } = await db.query(
+    `SELECT clerk_id, role_id FROM users WHERE clerk_id = $1`,
+    [user?.id]
+  );
 
   if (loggedInUser[0].role_id !== 2) {
     redirect("/");

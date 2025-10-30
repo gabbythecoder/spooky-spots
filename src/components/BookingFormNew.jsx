@@ -13,7 +13,7 @@ export default function BookingFormNew({ data, user }) {
       // console.log(`endpoint: ${endpoint}`);
       // console.log(`date: ${chosenDate}`);
       const response = await fetch(
-        `http://localhost:3000/api/getBookingsForDate/${endpoint}/${chosenDate}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/getBookingsForDate/${endpoint}/${chosenDate}`
       );
       const myData = await response.json();
       setBookings(myData);
@@ -32,7 +32,7 @@ export default function BookingFormNew({ data, user }) {
       groupsize: formData.get("groupsize"),
     };
 
-    fetch("http://localhost:3000/api/confirmbooking", {
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/confirmbooking`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

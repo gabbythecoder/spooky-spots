@@ -16,9 +16,9 @@ export default async function Header() {
   const user = await currentUser();
   const loggedInUser = await db.query(
     `SELECT clerk_id, role_id FROM users WHERE clerk_id = $1`,
-    [user.id]
+    [user?.id]
   );
-  const user_role = loggedInUser.rows[0].role_id;
+  const user_role = loggedInUser.rows[0]?.role_id;
 
   return (
     <>
