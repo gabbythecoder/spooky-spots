@@ -5,17 +5,17 @@
 
 - If you would like to run this app locally you can find instructions on how to do this within the folder called `/personal-docs/Setup-Guide`
 
-## Team members:
+## Team members
 
 - Sam Clark
 - Gabby French
 - Will Sparkes
 
-## Project description:
+## Project description
 
 Problem domain:
 
-User stories:
+future feature: Image gallery on "/place", Button to edit contact info, Booking date validation,
 
 ## Requirements
 
@@ -30,8 +30,10 @@ User stories:
 
 - ✅ 🏹 Users should be able to click the spooky spot from a map
 - ✅ 🏹 Admin should be able to add new places for users to see
-- 🏹 Image gallery on /:place
+- ❌ 🏹 Image gallery on /:place
 - ✅ 🏹 Custom icons on the map
+
+We couldn't get the image gallery done due to time constraints. We decided as a group that it would be best to leave it as a future feature to add.
 
 ## Wireframe
 
@@ -49,21 +51,32 @@ User stories:
 
 </div>
 
-## Lighthouse report:
+## Lighthouse report
 
-## Reflections:
+<div align="center">
 
-Please mention the requirements you met and which goals you achieved for this assignment.
+![LightHouse](./personal-docs/lighthouse/lighthouse.png)
 
-🎯 Were there any requirements or goals that you were not quite able to achieve?
+</div>
 
-🎯 If so, could you please tell us what was it that you found difficult about these tasks?
+## Reflections
 
-What went really well and what could have gone better?
-Detailing useful external sources that helped you complete the assignment (e.g Youtube tutorials).
-Describing errors or bugs you encountered while completing your assignment.
+## What went really well
 
-## References:
+- Pair programming
+- Planing
+- Always agreed as a team before moving on
+-
+
+## conflicts, errors or bugs we encountered
+
+- Booking form
+- Map markers
+- Will with clerk
+- merge conflicts
+-
+
+## References
 
 #### Date
 
