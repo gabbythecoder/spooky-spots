@@ -2,6 +2,13 @@ import { currentUser } from "@clerk/nextjs/server";
 import { db } from "@/utils/dbConnection";
 import { redirect } from "next/navigation";
 
+export async function generateMetadata({ params }) {
+  const myParams = await params;
+  return {
+    title: `Spooky Profile`,
+  };
+}
+
 export default async function UserProfilePage() {
   const user = await currentUser();
   if (!user) {

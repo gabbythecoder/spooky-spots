@@ -3,6 +3,13 @@ import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
+export async function generateMetadata({ params }) {
+  const myParams = await params;
+  return {
+    title: `Manage Spot - ${myParams.place}`,
+  };
+}
+
 export default async function ManagePlace({ params }) {
   const placeParam = (await params).place;
   console.log(placeParam);

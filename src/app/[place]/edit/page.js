@@ -4,6 +4,13 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import Link from "next/link";
 
+export async function generateMetadata({ params }) {
+  const myParams = await params;
+  return {
+    title: `Edit Spot - ${myParams.place}`,
+  };
+}
+
 export default async function EditPlace({ params }) {
   const placeParam = (await params).place;
   console.log(placeParam);

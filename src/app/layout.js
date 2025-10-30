@@ -10,11 +10,11 @@ const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
 });
 
-const creepster = Creepster ({
+const creepster = Creepster({
   weight: ["400"],
   subsets: ["latin"],
   variable: "--font-creepster",
-})
+});
 
 export const metadata = {
   title: "Spooky Spots",
