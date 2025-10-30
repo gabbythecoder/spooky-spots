@@ -79,7 +79,7 @@ body {
   font-weight: 600;
   font-family: var(--font-creepster);
   letter-spacing: 0.15rem;
-  text-shadow: 2px 2px 4px #000, 0 0 6px #E76F51;
+  text-shadow: 2px 2px 4px #000, 0 0 6px #e76f51;
 }
 
 .map-title {
@@ -106,6 +106,10 @@ body {
 .place-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 4px 12px rgba(255, 107, 53, 0.5);
+}
+
+.place-card:focus {
+  background-color: var(--hover-colour);
 }
 
 /* === image section === */
@@ -149,7 +153,8 @@ body {
 
 /* === media queries for "/" page === */
 @media (max-width: 480px) {
-  .place-card-title, .map-title {
+  .place-card-title,
+  .map-title {
     font-size: 1.5rem;
   }
 
@@ -166,4 +171,3 @@ body {
     font-size: 0.9rem;
   }
 }
-
