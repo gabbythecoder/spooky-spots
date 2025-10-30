@@ -19,11 +19,9 @@ export default function HomePage() {
 
   useEffect(() => {
     async function getPlaceData() {
-      //localhost url for now
       const response = await fetch("http://localhost:3000/api/places");
       const data = await response.json();
       setPlaces(data.rows);
-      // console.log(data.rows);
       return data.rows;
     }
 

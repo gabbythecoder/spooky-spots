@@ -68,7 +68,6 @@ export default function MyMap(props) {
         style={{ height: `${props.height}vh`, width: `${props.width}%` }}
         scrollWheelZoom={true}
       >
-        {/* <PlaceMarker /> */}
         <MapPlaces />
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

@@ -10,8 +10,6 @@ export default function BookingFormNew({ data, user }) {
 
   useEffect(() => {
     async function getBookingsData() {
-      // console.log(`endpoint: ${endpoint}`);
-      // console.log(`date: ${chosenDate}`);
       const response = await fetch(
         `http://localhost:3000/api/getBookingsForDate/${endpoint}/${chosenDate}`
       );
