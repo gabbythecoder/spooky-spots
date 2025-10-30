@@ -59,7 +59,7 @@ export default async function Header() {
             <div className="flex items-center gap-3">
               <SignedIn>
                 <SignOutButton>
-                  <button className="text-m border border-white-500 px-3 py-1 rounded-xl hover:text-black hover:bg-(--hover-colour) text-(--font-colour) cursor-pointer transition-colors">
+                  <button className="text-m border-2 border-white-500 px-3 py-1 rounded-[50px] hover:text-black hover:bg-(--hover-colour) text-(--font-colour) cursor-pointer transition-colors">
                     Sign Out
                   </button>
                 </SignOutButton>
@@ -67,12 +67,12 @@ export default async function Header() {
 
               <SignedOut>
                 <SignInButton>
-                  <button className="text-m border border-white-500 px-3 py-1 rounded-xl hover:text-black hover:bg-(--hover-colour) text-(--font-colour) transition-colors">
+                  <button className="text-m border-2 border-white-500 px-3 py-1 rounded-[50px] hover:text-black hover:bg-(--hover-colour) text-(--font-colour) cursor-pointer transition-colors">
                     Login
                   </button>
                 </SignInButton>
                 <SignUpButton>
-                  <button className="text-m border border-white-500 px-3 py-1 rounded-xl hover:text-black hover:bg-(--hover-colour) text-(--font-colour) transition-colors">
+                  <button className="text-m border-2 border-white-500 px-3 py-1 rounded-[50px] hover:text-black hover:bg-(--hover-colour) text-(--font-colour) cursor-pointer transition-colors">
                     Sign-up
                   </button>
                 </SignUpButton>

@@ -2,6 +2,7 @@ import { db } from "@/utils/dbConnection";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import Link from "next/link";
 
 export default async function EditPlace({ params }) {
   const placeParam = (await params).place;
@@ -68,16 +69,17 @@ export default async function EditPlace({ params }) {
       [placeParam, formValues.image_url]
     );
 
-    //need to double check this first if this is the best way for revalidatePath and redirect
-    // revalidatePath(`/${placeParam}`);
+    revalidatePath(`/${placeParam}`);
 
-    // redirect(`/${placeParam}`);
+    redirect(`/${placeParam}`);
   }
 
   return (
     <section>
       <div className="max-w-4xl mx-auto p-4">
-        <h2 className="text-4xl text-center pt-5">Edit Page</h2>
+        <h2 className="text-3xl font-semibold text-center pt-5">
+          Edit: {place.name}
+        </h2>
 
         <div>
           <form action={handlePlaceUpdate} className="flex flex-col gap-2">
@@ -87,7 +89,7 @@ export default async function EditPlace({ params }) {
               name="name"
               id="name"
               defaultValue={place.name}
-              className="border-2 border-(--secondary-accent-colour) p-[0.6rem] rounded-xl"
+              className="border-2 border-(--secondary-accent-colour) p-[0.6rem] rounded-xl bg-(--card-colour)"
             />
 
             <label htmlFor="address">Address:</label>
@@ -96,7 +98,7 @@ export default async function EditPlace({ params }) {
               name="address"
               id="address"
               defaultValue={place.address}
-              className="border-2 border-(--secondary-accent-colour) p-[0.6rem] rounded-xl"
+              className="border-2 border-(--secondary-accent-colour) p-[0.6rem] rounded-xl bg-(--card-colour)"
             />
 
             <label htmlFor="city">City:</label>
@@ -105,7 +107,7 @@ export default async function EditPlace({ params }) {
               name="city"
               id="city"
               defaultValue={place.city}
-              className="border-2 border-(--secondary-accent-colour) p-[0.6rem] rounded-xl"
+              className="border-2 border-(--secondary-accent-colour) p-[0.6rem] rounded-xl bg-(--card-colour)"
             />
 
             <label htmlFor="services">Services:</label>
@@ -114,7 +116,7 @@ export default async function EditPlace({ params }) {
               name="services"
               id="services"
               defaultValue={place.services}
-              className="border-2 border-(--secondary-accent-colour) p-[0.6rem] rounded-xl"
+              className="border-2 border-(--secondary-accent-colour) p-[0.6rem] rounded-xl bg-(--card-colour)"
             />
 
             <label htmlFor="description">Description:</label>
@@ -122,10 +124,10 @@ export default async function EditPlace({ params }) {
               type="text"
               name="description"
               id="description"
-              rows="3"
+              rows="4"
               cols="8"
               defaultValue={place.description}
-              className="border-2 border-(--secondary-accent-colour) p-[0.6rem] rounded-xl"
+              className="border-2 border-(--secondary-accent-colour) p-[0.6rem] rounded-xl resize-none bg-(--card-colour)"
             />
 
             <label htmlFor="history">History:</label>
@@ -136,7 +138,7 @@ export default async function EditPlace({ params }) {
               rows="4"
               cols="10"
               defaultValue={place.history}
-              className="border-2 border-(--secondary-accent-colour) p-[0.6rem] rounded-xl"
+              className="border-2 border-(--secondary-accent-colour) p-[0.6rem] rounded-xl resize-none bg-(--card-colour)"
             />
 
             <label htmlFor="booking_slots">Booking Slots:</label>
@@ -144,32 +146,39 @@ export default async function EditPlace({ params }) {
               type="number"
               name="booking_slots"
               id="booking_slots"
+              min="0"
+              max="50"
               defaultValue={place.booking_slots}
-              className="border-2 border-(--secondary-accent-colour) p-[0.6rem] rounded-xl"
+              className="border-2 border-(--secondary-accent-colour) p-[0.6rem] rounded-xl bg-(--card-colour)"
             />
 
-            <button
-              type="submit"
-              className="cursor-pointer rounded-[50px] border-2 border-(--secondary-accent-colour) py-[0.8rem] px-4 w-[200px] m-auto mt-4 hover:bg-(--secondary-accent-colour)"
-            >
-              Confirm Changes
-            </button>
+            <div className="flex justify-center items-center gap-2 mt-5">
+              <Link href={`/${placeParam}`} className="py-[0.65rem] px-4 w-[180px] hover:underline">Go Back</Link>
+
+              <button
+                type="submit"
+                className="cursor-pointer rounded-[50px] border-2 border-(--secondary-accent-colour) py-[0.65rem] px-4 w-[180px] hover:bg-(--hover-colour) hover:border-(--hover-colour) hover:text-black bg-(--card-colour)"
+              >
+                Confirm Changes
+              </button>
+            </div>
+
           </form>
         </div>
 
         <div className="mt-8 mb-8">
-          <form action={addImageUrl} className="flex flex-col">
+          <form action={addImageUrl} className="flex flex-col gap-2">
             <label htmlFor="image_url">Add New Image:</label>
             <input
               type="text"
               name="image_url"
               id="image_url"
               placeholder="Add your image URL here"
-              className="border-2 border-(--secondary-accent-colour) p-[0.6rem] rounded-xl"
+              className="border-2 border-(--secondary-accent-colour) p-[0.6rem] rounded-xl bg-(--card-colour)"
             />
             <button
               type="submit"
-              className="cursor-pointer rounded-[50px] border-2 border-(--secondary-accent-colour) py-[0.8rem] px-4 w-[200px] m-auto mt-5 hover:bg-(--secondary-accent-colour)"
+              className="cursor-pointer rounded-[50px] border-2 border-(--secondary-accent-colour) py-[0.65rem] px-4 w-[180px] m-auto mt-5 hover:bg-(--hover-colour) hover:border-(--hover-colour) hover:text-black bg-(--card-colour)"
             >
               Add Image
             </button>
