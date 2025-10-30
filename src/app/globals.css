@@ -28,7 +28,13 @@ body {
 
 .main-content {
   flex-grow: 1;
-  padding: 0rem 10%;
+  padding: 0rem 5%;
+}
+
+@media (min-width: 768px) {
+  .main-content {
+    padding: 0rem 20%;
+  }
 }
 
 .confirmButton {

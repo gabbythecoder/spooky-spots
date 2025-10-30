@@ -36,17 +36,21 @@ export default function HomePage() {
         <div className="hero-section">
           <h2>Dare to explore the unknown?</h2>
           <p>
-            Step into the shadows with Spooky Spots and uncover haunted hideaways, ghostly tours and true tales from the beyond. 
+            Step into the shadows with Spooky Spots and uncover haunted
+            hideaways, ghostly tours and true tales from the beyond.
           </p>
           <p>
-            Your guide to the world&apos;s most chilling - and unforgettable - destinations.
+            Your guide to the world&apos;s most chilling - and unforgettable -
+            destinations.
           </p>
-          <h3>Find your next ghostly destination - if you&apos;re brave enough! 👻</h3>
+          <h3>
+            Find your next ghostly destination - if you&apos;re brave enough! 👻
+          </h3>
         </div>
       </section>
 
       <h2 className="map-title">Follow the Ghostly Trail</h2>
-      <Map placeData={places} width={80} height={60} />
+      <Map placeData={places} width={100} height={60} />
 
       <h2 className="place-card-title">Discover Your Next Haunted Adventure</h2>
       {places.length > 0 &&

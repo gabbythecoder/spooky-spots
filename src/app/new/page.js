@@ -1,7 +1,6 @@
 "use client";
 
 import "leaflet/dist/leaflet.css";
-// import "leaflet-defaulticon-compatibility";
 import { useMemo } from "react";
 import dynamic from "next/dynamic";
 

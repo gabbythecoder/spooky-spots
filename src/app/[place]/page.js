@@ -10,7 +10,8 @@ import UserComments from "@/components/UserComments";
 import CommentForm from "@/components/CommentForm";
 import style from "./placepage.module.css";
 
-export default async function PlacePage({ params }) {
+export default async function PlacePage({ params, searchParams }) {
+  const queryString = await searchParams;
   const user = await currentUser();
   console.log(Date.now());
 
@@ -21,7 +22,7 @@ export default async function PlacePage({ params }) {
     [myParams.place]
   );
   const placeData = await placeResponse.rows[0];
-  //console.log(placeData);
+
   if (!placeData) {
     notFound();
   }
@@ -33,6 +34,21 @@ JOIN users ON comments.users_id = users.clerk_id WHERE comments.place_id = $1 OR
     [myParams.place]
   );
   const commentsData = commentsResponse.rows;
+  console.log(commentsData);
+
+  function compareNumbers(a, b) {
+    return a - b;
+  }
+
+  if (queryString.commentSort === "oldest") {
+    commentsData.sort((a, b) => a.timestamp.localeCompare(b.timestamp));
+  } else if (queryString.commentSort === "newest") {
+    commentsData.sort((a, b) => b.timestamp.localeCompare(a.timestamp));
+  } else if (queryString.commentRating === "high") {
+    commentsData.sort((a, b) => b.rating - a.rating);
+  } else if (queryString.commentRating === "low") {
+    commentsData.sort((a, b) => a.rating - b.rating);
+  }
 
   return (
     <main className="flex flex-col gap-5">
