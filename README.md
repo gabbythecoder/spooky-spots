@@ -29,9 +29,9 @@ User stories:
 #### Stretch goals
 
 - ✅ 🏹 Users should be able to click the spooky spot from a map
-- 🏹 Admin should be able to add new places for users to see
+- ✅ 🏹 Admin should be able to add new places for users to see
 - 🏹 Image gallery on /:place
-- 🏹 Custom icons on the map
+- ✅ 🏹 Custom icons on the map
 
 ## Wireframe
 
@@ -71,4 +71,4 @@ Describing errors or bugs you encountered while completing your assignment.
 
 #### Map
 
-[Leaflet](https://leafletjs.com/) , [Leaflet start guide](https://leafletjs.com/examples/quick-start/) , [maptiler](https://docs.maptiler.com/) , [Tile providers](https://wiki.openstreetmap.org/wiki/Raster_tile_providers) , [React leaflet](https://react-leaflet.js.org/)
+[Leaflet](https://leafletjs.com/) , [Leaflet start guide](https://leafletjs.com/examples/quick-start/) , [maptiler](https://docs.maptiler.com/) , [Tile providers](https://wiki.openstreetmap.org/wiki/Raster_tile_providers) , [React leaflet](https://react-leaflet.js.org/) , [Markers With Custom Icons](https://leafletjs.com/examples/custom-icons/)

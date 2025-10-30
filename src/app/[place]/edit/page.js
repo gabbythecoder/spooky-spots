@@ -19,10 +19,8 @@ export default async function EditPlace({ params }) {
   if (user.username !== placeData.rows[0].owner_username) {
     redirect(`/${placeParam}`);
   }
-  // console.log(placeData);
 
   const place = placeData.rows[0];
-  // console.log(place);
 
   //function to edit places information
   async function handlePlaceUpdate(formData) {
@@ -153,7 +151,12 @@ export default async function EditPlace({ params }) {
             />
 
             <div className="flex justify-center items-center gap-2 mt-5">
-              <Link href={`/${placeParam}`} className="py-[0.65rem] px-4 w-[180px] hover:underline">Go Back</Link>
+              <Link
+                href={`/${placeParam}`}
+                className="py-[0.65rem] px-4 w-[180px] hover:underline"
+              >
+                Go Back
+              </Link>
 
               <button
                 type="submit"
@@ -162,7 +165,6 @@ export default async function EditPlace({ params }) {
                 Confirm Changes
               </button>
             </div>
-
           </form>
         </div>
 

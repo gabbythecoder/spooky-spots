@@ -11,7 +11,6 @@ export async function GET() {
         ON places.endpoint = images.place_name
       ORDER BY places.endpoint, images.id`
     );
-    // console.log(query)\
 
     return new Response(JSON.stringify(query));
   } catch (error) {

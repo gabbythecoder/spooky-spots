@@ -9,13 +9,16 @@ import {
 import { useState } from "react";
 import "leaflet/dist/leaflet.css";
 import Link from "next/link";
-
 import L from "leaflet";
 
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: "/leaflet/images/marker-icon-2x.png",
-  iconUrl: "/leaflet/images/marker-icon.png",
+const customGhostIcon = L.icon({
+  iconUrl: "leaflet/images/ghost-icon.png",
+  iconRetinaUrl: "leaflet/images/ghost-icon-2x.png",
   shadowUrl: "/leaflet/images/marker-shadow.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
 });
 
 export default function MyMap(props) {
@@ -29,7 +32,7 @@ export default function MyMap(props) {
     });
 
     return position === null ? null : (
-      <Marker position={position}>
+      <Marker position={position} icon={customGhostIcon}>
         <Popup>
           <div className="flex flex-col text-center">
             <Link href="/">Home</Link>
@@ -46,7 +49,7 @@ export default function MyMap(props) {
     return placeData.map((place, index) => {
       const coords = { lat: place.x, lng: place.y };
       return (
-        <Marker key={index} position={coords}>
+        <Marker key={index} position={coords} icon={customGhostIcon}>
           <Popup>
             <div className="flex flex-col items-center">
               <Link href={`/${place.endpoint}`} tabIndex={0}>
@@ -68,13 +71,12 @@ export default function MyMap(props) {
         style={{ height: `${props.height}vh`, width: `${props.width}%` }}
         scrollWheelZoom={true}
       >
-        {/* <PlaceMarker /> */}
         <MapPlaces />
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={{ lat: 51.505, lng: -0.09 }}>
+        <Marker position={{ lat: 51.505, lng: -0.09 }} icon={customGhostIcon}>
           <Popup>Our office: Contact us here</Popup>
         </Marker>
       </MapContainer>

@@ -10,8 +10,18 @@ import { useState } from "react";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
-import Link from "next/link";
 import { redirect } from "next/navigation";
+import L from "leaflet";
+
+const customGhostIcon = L.icon({
+  iconUrl: "leaflet/images/ghost-icon.png",
+  iconRetinaUrl: "leaflet/images/ghost-icon-2x.png",
+  shadowUrl: "/leaflet/images/marker-shadow.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
 
 export default function MyMap(props) {
   const { width, height } = props;
@@ -25,7 +35,7 @@ export default function MyMap(props) {
     });
 
     return position === null ? null : (
-      <Marker position={position}>
+      <Marker position={position} icon={customGhostIcon}>
         <Popup>
           <div className="flex flex-col text-center">
             <p>
@@ -45,7 +55,6 @@ export default function MyMap(props) {
       x: formData.get("x"),
       y: formData.get("y"),
     };
-    console.log(formValues);
 
     await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/addnewplace`, {
       method: "POST",

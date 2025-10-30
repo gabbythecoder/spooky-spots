@@ -10,8 +10,6 @@ export default function BookingFormNew({ data, user }) {
 
   useEffect(() => {
     async function getBookingsData() {
-      // console.log(`endpoint: ${endpoint}`);
-      // console.log(`date: ${chosenDate}`);
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/getBookingsForDate/${endpoint}/${chosenDate}`
       );
@@ -39,8 +37,6 @@ export default function BookingFormNew({ data, user }) {
       },
       body: JSON.stringify({ formValues }),
     });
-
-    console.log(formValues);
   }
 
   return (
