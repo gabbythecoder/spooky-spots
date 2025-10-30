@@ -12,7 +12,6 @@ import style from "./placepage.module.css";
 export default async function PlacePage({ params, searchParams }) {
   const queryString = await searchParams;
   const user = await currentUser();
-  console.log(Date.now());
 
   const myParams = await params;
 
