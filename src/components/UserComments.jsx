@@ -1,7 +1,8 @@
 import { db } from "@/utils/dbConnection";
 import { revalidatePath } from "next/cache";
+import Link from "next/link";
 
-export default function UserComments({ commentsData, user, endpoint }) {
+export default async function UserComments({ commentsData, user, endpoint }) {
   async function DeleteComment(formData) {
     "use server";
     db.query(`DELETE FROM comments WHERE id = $1`, [formData.get("commentid")]);
@@ -9,6 +10,32 @@ export default function UserComments({ commentsData, user, endpoint }) {
   }
   return (
     <>
+      <div className="flex gap-5">
+        <Link
+          href={`${endpoint}?commentSort=newest`}
+          className="hover:underline"
+        >
+          Newest
+        </Link>
+        <Link
+          href={`${endpoint}?commentSort=oldest`}
+          className="hover:underline"
+        >
+          Oldest
+        </Link>
+        <Link
+          href={`${endpoint}?commentRating=high`}
+          className="hover:underline"
+        >
+          Highest Rated
+        </Link>
+        <Link
+          href={`${endpoint}?commentRating=low`}
+          className="hover:underline"
+        >
+          Lowest Rated
+        </Link>
+      </div>
       <h2>User Comments:</h2>
       {commentsData.length > 0 ? (
         commentsData.map((comment) => {

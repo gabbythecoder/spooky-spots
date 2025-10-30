@@ -9,7 +9,17 @@ import {
   SignOutButton,
 } from "@clerk/nextjs";
 
+import { currentUser } from "@clerk/nextjs/server";
+import { db } from "@/utils/dbConnection";
+
 export default async function Header() {
+  const user = await currentUser();
+  const loggedInUser = await db.query(
+    `SELECT clerk_id, role_id FROM users WHERE clerk_id = $1`,
+    [user.id]
+  );
+  const user_role = loggedInUser.rows[0].role_id;
+
   return (
     <>
       <div className="bg-black">
@@ -35,6 +45,14 @@ export default async function Header() {
                 >
                   Profile
                 </Link>
+                {user_role === 2 ? (
+                  <Link
+                    href={"/new"}
+                    className="hover:text-(--hover-colour) transition-colors text-lg font-medium"
+                  >
+                    New Place
+                  </Link>
+                ) : null}
               </SignedIn>
             </nav>
 
