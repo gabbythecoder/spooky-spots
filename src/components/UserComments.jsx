@@ -10,19 +10,19 @@ export default async function UserComments({ commentsData, user, endpoint }) {
   }
   return (
     <>
-      <h2 className="text-center text-xl py-3 text-(--accent-colour)">
+      <h2 className="py-3 text-xl text-(--font-colour) border-b border-(--secondary-accent-colour)">
         User Comments:
       </h2>
       <div className="flex gap-5">
         <Link
           href={`${endpoint}?commentSort=newest`}
-          className="hover:text-(--accent-colour)"
+          className="hover:text-(--secondary-accent-colour)"
         >
           Newest
         </Link>
         <Link
           href={`${endpoint}?commentSort=oldest`}
-          className="hover:text-(--accent-colour)"
+          className="hover:text-(--secondary-accent-colour)"
         >
           Oldest
         </Link>
@@ -32,11 +32,11 @@ export default async function UserComments({ commentsData, user, endpoint }) {
           return (
             <div
               key={comment.id}
-              className="flex items-center bg-(--card-colour) px-3 rounded-lg border border-(--accent-colour)"
+              className="flex items-center bg-(--card-colour) px-3 rounded-lg border border-(--secondary-accent-colour)"
             >
               <div className="flex items-center justify-between w-full gap-3 ">
                 <div className="w-full p-2 flex flex-col gap-2">
-                  <div className="flex gap-5 border-b border-(--accent-colour) justify-between items-center">
+                  <div className="flex gap-5 border-b border-(--secondary-accent-colour) justify-between items-center">
                     <p className="pb-2 text-lg">
                       {comment.username.charAt(0).toUpperCase() +
                         comment.username.slice(1)}

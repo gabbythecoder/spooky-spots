@@ -44,7 +44,7 @@ export default function BookingFormNew({ data, user }) {
       <form className={`${style.datePicker}`}>
         <label htmlFor="date">Select Date:</label>
         <input
-          className="m-2 border border-(--accent-colour) p-1"
+          className="m-2 border border-(--secondary-accent-colour) rounded-xl p-[1ex]"
           type="date"
           name="date"
           defaultValue={chosenDate}
@@ -75,12 +75,12 @@ export default function BookingFormNew({ data, user }) {
             <label htmlFor="">Group Size:</label>
             <input type="number" name="groupsize" />
           </div>
-          <button type="submit" className="confirmButton w-fit mx-auto">
+          <button type="submit" className="confirmButton w-fit mx-auto mt-2">
             Confirm Booking
           </button>
         </form>
       ) : (
-        <p className="text-(--accent-colour)">
+        <p className="text-(--font-colour)">
           No Availability For Selected Date
         </p>
       )}

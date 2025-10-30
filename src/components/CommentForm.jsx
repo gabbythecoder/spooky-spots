@@ -32,7 +32,9 @@ export default function CommentForm({ user, endpoint }) {
       {user ? (
         <form action={handlePostComment} className={`${style.form}`}>
           <div className={`${style.formGroup}`}>
-            <label htmlFor="comment">Comment</label>
+            <label htmlFor="comment" className="text-xl">
+              Comment
+            </label>
             <textarea
               name="comment"
               id=""

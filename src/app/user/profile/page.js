@@ -81,7 +81,7 @@ export default async function UserProfilePage() {
         <div className="w-full max-w-2xl">
           <div>
             <h2
-              className="text-3xl font-bold mb-6 text-center mt-8 
+              className="text-3xl page-title font-bold mb-6 text-center mt-8 
                    text-(--font-colour)"
             >
               {displayName.charAt(0).toUpperCase() + displayName.slice(1)}
@@ -137,7 +137,7 @@ export default async function UserProfilePage() {
                 {bookingInfo.map((booking, index) => (
                   <li
                     key={index}
-                    className="p-4 rounded-lg shadow-lg place-card"
+                    className=" flex flex-col p-4 rounded-lg shadow-lg place-card"
                   >
                     <p
                       className="font-bold text-lg mb-1 
