@@ -26,18 +26,6 @@ export default async function UserComments({ commentsData, user, endpoint }) {
         >
           Oldest
         </Link>
-        <Link
-          href={`${endpoint}?commentRating=high`}
-          className="hover:text-(--accent-colour)"
-        >
-          Highest Rated
-        </Link>
-        <Link
-          href={`${endpoint}?commentRating=low`}
-          className="hover:text-(--accent-colour)"
-        >
-          Lowest Rated
-        </Link>
       </div>
       {commentsData.length > 0 ? (
         commentsData.map((comment) => {
