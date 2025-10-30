@@ -49,7 +49,9 @@ export default function MyMap(props) {
         <Marker key={index} position={coords}>
           <Popup>
             <div className="flex flex-col items-center">
-              <Link href={`/${place.endpoint}`}>{place.name}</Link>
+              <Link href={`/${place.endpoint}`} tabIndex={0}>
+                {place.name}
+              </Link>
               {place.city}
             </div>
           </Popup>
@@ -66,7 +68,7 @@ export default function MyMap(props) {
         style={{ height: `${props.height}vh`, width: `${props.width}%` }}
         scrollWheelZoom={true}
       >
-        <PlaceMarker />
+        {/* <PlaceMarker /> */}
         <MapPlaces />
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
