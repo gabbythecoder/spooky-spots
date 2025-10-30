@@ -10,11 +10,7 @@
 }
 
 .formGroup textarea {
-  border: 1px solid var(--accent-colour);
-  padding: 1ex;
-}
-
-.formGroup input {
-  border: 1px solid var(--accent-colour);
+  border: 1px solid var(--secondary-accent-colour);
+  border-radius: 8px;
   padding: 1ex;
 }

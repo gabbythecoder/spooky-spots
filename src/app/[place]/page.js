@@ -54,19 +54,16 @@ JOIN users ON comments.users_id = users.clerk_id WHERE comments.place_id = $1 OR
     <main className="flex flex-col gap-5">
       {placeData ? (
         <div className="flex flex-col mt-5">
-          <h1 className="text-3xl text-center">{placeData.name}</h1>
+          <h1 className="text-3xl text-center page-title">{placeData.name}</h1>
           {placeData.owner_username === user?.username ? (
             <div className="text-center mt-2 flex gap-2 justify-center">
               <Link
                 href={`/${myParams.place}/manage`}
-                className="text-sm border border-gray-500 px-3 py-1 rounded hover:bg-blue-500 hover:border-blue-500 transition-colors text-white"
+                className="confirmButton"
               >
                 Manage
               </Link>
-              <Link
-                href={`/${myParams.place}/edit`}
-                className="text-sm border border-gray-500 px-3 py-1 rounded hover:bg-blue-500 hover:border-blue-500 transition-colors text-white"
-              >
+              <Link href={`/${myParams.place}/edit`} className="confirmButton">
                 Edit
               </Link>
             </div>
@@ -89,18 +86,22 @@ JOIN users ON comments.users_id = users.clerk_id WHERE comments.place_id = $1 OR
           ) : null}
         </div>
         <div className={`${style.services}`}>
-          <p className="text-xl text-center text-(--accent-colour)">
+          <p className="text-xl font-bold text-center text-(--font-colour)">
             {placeData.services}
           </p>
-          <div className={`${style.section}`}>
-            <h2>Description:</h2>
-            <p className="text-center">{placeData.description}</p>
+          <div>
+            <h2 className="text-xl border-b border-(--secondary-accent-colour)">
+              Description:
+            </h2>
+            <p>{placeData.description}</p>
           </div>
         </div>
       </section>
 
       <section className={`${style.section}`}>
-        <h2>History:</h2>
+        <h2 className="text-xl border-b border-(--secondary-accent-colour)">
+          History:
+        </h2>
         {placeData.history ? <p>{placeData.history}</p> : <p>No History Set</p>}
       </section>
 

@@ -75,53 +75,57 @@ export default function MyMap(props) {
 
       <div>
         <form action={CreateNewPlace} className="flex flex-col gap-2 mt-4">
-            <label htmlFor="endpoint">Endpoint: </label>
-            <input
-              type="text"
-              name="endpoint"
-              id="endpoint"
-              className="border-2 border-(--secondary-accent-colour) rounded-xl bg-(--card-colour) p-1 ml-2"
-              required
-            />
-        
-            <label htmlFor="endpoint">Location Name: </label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              className="border-2 border-(--secondary-accent-colour) rounded-xl bg-(--card-colour) p-1 ml-2"
-              required
-            />
-          
-            <label htmlFor="owner">Owners Username: </label>
-            <input
-              type="text"
-              name="owner_username"
-              id="owner_username"
-              className="border-2 border-(--secondary-accent-colour) rounded-xl bg-(--card-colour) p-1 ml-2"
-              required
-            />
+          <label htmlFor="endpoint">Endpoint: </label>
+          <input
+            type="text"
+            name="endpoint"
+            id="endpoint"
+            className="border-2 border-(--secondary-accent-colour) rounded-xl bg-(--card-colour) p-1 ml-2"
+            required
+          />
+
+          <label htmlFor="endpoint">Location Name: </label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            className="border-2 border-(--secondary-accent-colour) rounded-xl bg-(--card-colour) p-1 ml-2"
+            required
+          />
+
+          <label htmlFor="owner">Owners Username: </label>
+          <input
+            type="text"
+            name="owner_username"
+            id="owner_username"
+            className="border-2 border-(--secondary-accent-colour) rounded-xl bg-(--card-colour) p-1 ml-2"
+            required
+          />
 
           <div className="text-center">
             <p className="text-lg">Location Coordinates</p>
-            <label htmlFor="x">X:</label>
-            <input
-              type="text"
-              name="x"
-              value={position.lat}
-              required
-              readOnly
-              className="border-2 border-(--secondary-accent-colour) rounded-xl bg-(--card-colour) p-1 m-2"
-            />
-            <label htmlFor="y">Y:</label>
-            <input
-              type="text"
-              name="y"
-              value={position.lng}
-              required
-              readOnly
-              className="border-2 border-(--secondary-accent-colour) rounded-xl bg-(--card-colour) p-1 ml-2"
-            />
+            <div className="flex justify-center items-center gap-2 mb-2">
+              <label htmlFor="x">X:</label>
+              <input
+                type="text"
+                name="x"
+                value={position.lat}
+                required
+                readOnly
+                className="border-2 border-(--secondary-accent-colour) rounded-xl bg-(--card-colour) p-1"
+              />
+            </div>
+            <div className="flex justify-center items-center gap-2">
+              <label htmlFor="y">Y:</label>
+              <input
+                type="text"
+                name="y"
+                value={position.lng}
+                required
+                readOnly
+                className="border-2 border-(--secondary-accent-colour) rounded-xl bg-(--card-colour) p-1"
+              />
+            </div>
           </div>
 
           <div className="flex justify-center">
@@ -145,12 +149,12 @@ export default function MyMap(props) {
           </div>
 
           <div className="flex justify-center">
-          <button
-            type="submit"
-            className="cursor-pointer rounded-[50px] border-2 border-(--secondary-accent-colour) py-[0.65rem] px-4 w-[180px] hover:bg-(--hover-colour) hover:border-(--hover-colour) hover:text-black bg-(--card-colour) mb-4 mt-3"
-          >
-            Create New Place
-          </button>
+            <button
+              type="submit"
+              className="cursor-pointer rounded-[50px] border-2 border-(--secondary-accent-colour) py-[0.65rem] px-4 w-[180px] hover:bg-(--hover-colour) hover:border-(--hover-colour) hover:text-black bg-(--card-colour) mb-4 mt-3"
+            >
+              Create New Place
+            </button>
           </div>
         </form>
       </div>

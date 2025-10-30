@@ -82,9 +82,7 @@ export default async function EditPlace({ params }) {
   return (
     <section>
       <div className="max-w-4xl mx-auto p-4">
-        <h2 className="page-title mb-4">
-          Edit: {place.name}
-        </h2>
+        <h2 className="page-title mb-4">Edit: {place.name}</h2>
 
         <div>
           <form action={handlePlaceUpdate} className="flex flex-col gap-2">
@@ -160,7 +158,7 @@ export default async function EditPlace({ params }) {
             <div className="flex justify-center items-center gap-2 mt-5">
               <Link
                 href={`/${placeParam}`}
-                className="py-[0.65rem] px-4 w-[180px] hover:underline"
+                className="cursor-pointer rounded-[50px] border-2 border-(--secondary-accent-colour) py-[0.65rem] px-4 w-[180px] hover:bg-(--hover-colour) hover:border-(--hover-colour) hover:text-black bg-(--card-colour) text-center"
               >
                 Go Back
               </Link>
