@@ -16,7 +16,7 @@ export default function NewPlaceHandler() {
 
   return (
     <>
-      <Map width={50} height={50} />
+      <Map width={80} height={50} />
     </>
   );
 }

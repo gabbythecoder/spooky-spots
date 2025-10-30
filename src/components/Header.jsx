@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import spookyspots from "@/../public/logo/spooky-spots-logo.png";
 
 import {
   UserButton,
@@ -25,9 +27,14 @@ export default async function Header() {
       <div className="bg-black">
         <header className="flex flex-col md:flex-row justify-between items-center p-4">
           <div className="mb-4 md:mb-0">
-            <h1 className="text-3xl font-extrabold text-white-500">
-              <Link href={"/"}>Spooky Spots</Link>
-            </h1>
+            <Link href={"/"}>
+              <Image
+                src={spookyspots}
+                alt="Spooky Spots Logo"
+                placeholder="blur"
+                className="logo-image"
+              />
+            </Link>
           </div>
 
           <div className="flex items-center space-x-6">

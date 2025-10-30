@@ -68,49 +68,92 @@ export default function MyMap(props) {
   }
 
   return (
-    <>
-      <form action={CreateNewPlace} className="flex flex-col gap-5">
-        <div className="form-group">
-          <label htmlFor="endpoint">Endpoint</label>
-          <input type="text" name="endpoint" />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="endpoint">Location Name</label>
-          <input type="text" name="name" />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="owner">Owners Username</label>
-          <input type="text" name="owner_username" />
-        </div>
-
-        <div className="form-group">
-          <input type="text" name="x" value={position.lat} readOnly />
-          <input type="text" name="y" value={position.lng} readOnly />
-        </div>
-
-        <button type="submit">Create New Place</button>
-      </form>
-      <div className={`w-[${props.width}]% h-[${props.height}]vh`}>
-        <MapContainer
-          center={{ lat: 53.5, lng: -1.509 }}
-          zoom={8}
-          style={{ height: `${props.height}vh`, width: `${props.width}%` }}
-          scrollWheelZoom={true}
-        >
-          <PlaceMarker />
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <Marker position={{ lat: 51.505, lng: -0.09 }}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker>
-        </MapContainer>
+    <section>
+      <div>
+        <h2 className="page-title">Add New Place</h2>
       </div>
-    </>
+
+      <div>
+        <form action={CreateNewPlace} className="flex flex-col gap-2 mt-4">
+            <label htmlFor="endpoint">Endpoint: </label>
+            <input
+              type="text"
+              name="endpoint"
+              id="endpoint"
+              className="border-2 border-(--secondary-accent-colour) rounded-xl bg-(--card-colour) p-1 ml-2"
+              required
+            />
+        
+            <label htmlFor="endpoint">Location Name: </label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              className="border-2 border-(--secondary-accent-colour) rounded-xl bg-(--card-colour) p-1 ml-2"
+              required
+            />
+          
+            <label htmlFor="owner">Owners Username: </label>
+            <input
+              type="text"
+              name="owner_username"
+              id="owner_username"
+              className="border-2 border-(--secondary-accent-colour) rounded-xl bg-(--card-colour) p-1 ml-2"
+              required
+            />
+
+          <div className="text-center">
+            <p className="text-lg">Location Coordinates</p>
+            <label htmlFor="x">X:</label>
+            <input
+              type="text"
+              name="x"
+              value={position.lat}
+              required
+              readOnly
+              className="border-2 border-(--secondary-accent-colour) rounded-xl bg-(--card-colour) p-1 m-2"
+            />
+            <label htmlFor="y">Y:</label>
+            <input
+              type="text"
+              name="y"
+              value={position.lng}
+              required
+              readOnly
+              className="border-2 border-(--secondary-accent-colour) rounded-xl bg-(--card-colour) p-1 ml-2"
+            />
+          </div>
+
+          <div className="flex justify-center">
+            <MapContainer
+              center={{ lat: 53.5, lng: -1.509 }}
+              zoom={8}
+              style={{ height: `${props.height}vh`, width: `${props.width}%` }}
+              scrollWheelZoom={true}
+            >
+              <PlaceMarker />
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <Marker position={{ lat: 51.505, lng: -0.09 }}>
+                <Popup>
+                  A pretty CSS3 popup. <br /> Easily customizable.
+                </Popup>
+              </Marker>
+            </MapContainer>
+          </div>
+
+          <div className="flex justify-center">
+          <button
+            type="submit"
+            className="cursor-pointer rounded-[50px] border-2 border-(--secondary-accent-colour) py-[0.65rem] px-4 w-[180px] hover:bg-(--hover-colour) hover:border-(--hover-colour) hover:text-black bg-(--card-colour) mb-4 mt-3"
+          >
+            Create New Place
+          </button>
+          </div>
+        </form>
+      </div>
+    </section>
   );
 }

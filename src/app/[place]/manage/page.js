@@ -61,9 +61,14 @@ export default async function ManagePlace({ params }) {
   }
 
   const BookingItem = ({ booking, handleUpdate }) => (
-    <div key={booking.id}>
+    <div
+      key={booking.id}
+      className="flex flex-col justify-start gap-2 m-4 mx-auto p-4 px-8 w-[600px] max-w-[90%] border-2 border-(--secondary-accent-colour) rounded-xl bg-(--card-colour) shadow-[0_2px_6px_rgba(255,107,53,0.3)] transition-shadow duration-300 ease-in-out"
+    >
       <p>Booked by: {booking.name || booking.username}</p>
-      <p>Date: {new Date(Number(booking.date)).toDateString()}</p>
+      <p className="italic text-zinc-400">
+        Date: {new Date(Number(booking.date)).toDateString()}
+      </p>
       <p>Group Size: {booking.group_size}</p>
       <p>Phone: {booking.phone}</p>
       <p>
@@ -72,17 +77,27 @@ export default async function ManagePlace({ params }) {
       </p>
 
       <div>
-        <form action={handleUpdate}>
+        <form action={handleUpdate} className="text-right">
           <input type="hidden" name="bookingId" value={booking.id} />
           {booking.completed === false ? (
             <>
               <input type="hidden" name="status" value="true" />
-              <button type="submit">Completed</button>
+              <button
+                type="submit"
+                className="border-2 rounded-[50px] py-[0.4rem] px-4 text-sm cursor-pointer hover:bg-[#2ecc71] hover:border-[#2ecc71] hover:shadow-[0_0_12px_#2ecc71] hover:text-black transition duration-300 ease-in-out"
+              >
+                Mark As Completed
+              </button>
             </>
           ) : (
             <>
               <input type="hidden" name="status" value="false" />
-              <button type="submit">Upcoming</button>
+              <button
+                type="submit"
+                className="border-2 rounded-[50px] py-[0.4rem] px-4 text-sm cursor-pointer hover:bg-[#60a5fa] hover:border-[#60a5fa] hover:shadow-[0_0_12px_#60a5fa] hover:text-black transition duration-300 ease-in-out"
+              >
+                Mark As Upcoming
+              </button>
             </>
           )}
         </form>
@@ -92,12 +107,8 @@ export default async function ManagePlace({ params }) {
 
   return (
     <div>
-      <h2>Manage: {placeData.name}</h2>
-      <h3>Upcoming Bookings for {placeData.name}</h3>
-
-      <br />
-      <hr />
-      <br />
+      <h2 className="page-title">Manage: {placeData.name}</h2>
+      <h3 className="text-xl font-semibold mt-4">Upcoming Bookings</h3>
 
       <section>
         {upcomingBookings.length > 0 ? (
@@ -120,7 +131,7 @@ export default async function ManagePlace({ params }) {
       <br />
 
       <section>
-        <h3>Completed Bookings</h3>
+        <h3 className="text-xl font-semibold">Completed Bookings</h3>
         {completedBookings.length > 0 ? (
           <div>
             {completedBookings.map((booking) => (
