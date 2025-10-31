@@ -61,6 +61,10 @@ We couldn't get the image gallery done due to time constraints. We decided as a 
 
 ## Reflections
 
+[Click here to read Will's reflection](/personal-docs/Reflection/WILL-REFLECTION.md)
+
+[Click here to read Sam's reflection](/personal-docs/Reflection/SAM.md)
+
 ## What went really well
 
 - Pair programming
