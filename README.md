@@ -13,9 +13,9 @@
 
 ## Project description
 
-Problem domain:
+Problem domain: Spooky Spots is all about finding 'scary experiences' for people to visit. This app bridges the gap between business owner and customer, by giving users access to a map to browse scary locations, while allowing business owners to manage bookings for their Spooky Spot.
 
-future feature: Image gallery on "/place", Button to edit contact info, Booking date validation,
+Future Feature: Image gallery on "/place", Button to edit contact info, Booking date validation
 
 ## Requirements
 
@@ -43,11 +43,11 @@ We couldn't get the image gallery done due to time constraints. We decided as a 
 
 </div>
 
-## SQL sheame
+## SQL schema
 
 <div align="center">
 
-![SQL sheame](./personal-docs/SQL-Sheame/SQL-Sheame.png)
+![SQL schema](./personal-docs/SQL-Schema/SQL-Schema.png)
 
 </div>
 
@@ -63,22 +63,24 @@ We couldn't get the image gallery done due to time constraints. We decided as a 
 
 [Click here to read Will's reflection](/personal-docs/Reflection/WILL-REFLECTION.md)
 
-[Click here to read Sam's reflection](/personal-docs/Reflection/SAM.md)
+[Click here to read Sam's reflection](/personal-docs/Reflection/SAM-REFLECTION.md)
 
-## What went really well
+[Click here to read Gabby's reflection](/personal-docs/Reflection/GABBY-REFLECTION.md)
+
+## What Went Really Well
+
+We each discussed these points in our individual README files and have summarised them below in bullet points.
 
 - Pair programming
-- Planing
+- Planning
 - Always agreed as a team before moving on
--
 
-## conflicts, errors or bugs we encountered
+## Conflicts, Errors or Bugs We Encountered
+These details are also included in the individual README files, and we have provided a concise summary of them below.
 
-- Booking form
-- Map markers
-- Will with clerk
-- merge conflicts
--
+- Booking form 
+- Place markers
+- Merge conflicts
 
 ## References
 
